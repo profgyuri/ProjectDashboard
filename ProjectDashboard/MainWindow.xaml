@@ -78,8 +78,9 @@
                         </Setter>
                         <Setter Property="ItemContainerStyle">
                             <Setter.Value>
-                                <Style TargetType="ListViewItem">
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection" Value="False" />
                                 </Style>
                             </Setter.Value>
                         </Setter>
@@ -87,8 +88,46 @@
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate DataType="models:Project">
-                                    <TextBlock
-                                        Text="{Binding ProjectName}"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Text="{Binding ProjectName}"/>
+                                        <Menu
+                                            Grid.Column="1"
+                                            materialDesign:RippleAssist.IsDisabled="True"
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}">
+                                            <MenuItem
+                                                Header="{materialDesign:PackIcon Kind=Gear}">
+                                                <MenuItem
+                                                    Header="Open .exe"
+                                                    Icon="{materialDesign:PackIcon Kind=OpenInApp}">
+                                                    <MenuItem
+                                                        Header="Published"/>
+                                                    <MenuItem
+                                                        Header="Debug build"/>
+                                                    <MenuItem
+                                                        Header="Release build"/>
+                                                </MenuItem>
+                                                <MenuItem
+                                                    Header="Open Solution"
+                                                    Icon="{materialDesign:PackIcon Kind=PackageOpen}">
+                                                    <MenuItem
+                                                        Header="With Visual Studio"/>
+                                                    <MenuItem
+                                                        Header="With Rider"/>
+                                                </MenuItem>
+                                                <MenuItem
+                                                    Header="Remove From List"
+                                                    Icon="{materialDesign:PackIcon Kind=Remove}"/>
+                                            </MenuItem>
+                                        </Menu>
+
+                                    </Grid>
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
