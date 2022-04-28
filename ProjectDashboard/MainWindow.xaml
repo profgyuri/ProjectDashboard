@@ -111,19 +111,27 @@
                                                     Header="Open .exe"
                                                     Icon="{materialDesign:PackIcon Kind=OpenInApp}">
                                                     <MenuItem
-                                                        Header="Published"/>
+                                                        Header="Published"
+                                                        Command="{Binding OpenExeCommand}"
+                                                        CommandParameter="{Binding PublishPath}"/>
                                                     <MenuItem
-                                                        Header="Debug build"/>
+                                                        Header="Debug build"
+                                                        Command="{Binding OpenExeCommand}"
+                                                        CommandParameter="{Binding DebugPath}"/>
                                                     <MenuItem
-                                                        Header="Release build"/>
+                                                        Header="Release build"
+                                                        Command="{Binding OpenExeCommand}"
+                                                        CommandParameter="{Binding ReleasePath}"/>
                                                 </MenuItem>
                                                 <MenuItem
                                                     Header="Open Solution"
                                                     Icon="{materialDesign:PackIcon Kind=FileCode}">
                                                     <MenuItem
-                                                        Header="With Visual Studio"/>
+                                                        Header="With Visual Studio"
+                                                        Command="{Binding OpenInVSCommand}"/>
                                                     <MenuItem
-                                                        Header="With Rider"/>
+                                                        Header="With Rider"
+                                                        Command="{Binding OpenInRiderCommand}"/>
                                                 </MenuItem>
                                                 <MenuItem
                                                     Header="Edit"

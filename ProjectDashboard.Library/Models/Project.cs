@@ -1,6 +1,10 @@
-﻿namespace ProjectDashboard.Library.Models;
+﻿using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
+using ProjectDashboard.Library.Data;
 
-public class Project
+namespace ProjectDashboard.Library.Models;
+
+public partial class Project
 {
     /// <summary>
     ///     Name of the project.
@@ -36,6 +40,44 @@ public class Project
     {
     }
 
+    [ICommand]
+    public void OpenExe(string path)
+    {
+        if (!string.IsNullOrEmpty(path) && File.Exists(path))
+        {
+            Process.Start(path);
+        }
+    }
+
+    [ICommand]
+    public void OpenInVS()
+    {
+        OpenSolution("devenv.exe");
+    }
+
+    [ICommand]
+    public void OpenInRider()
+    {
+        OpenSolution(RegistryHelper.GetRiderPath());
+    }
+
+    private void OpenSolution(string path)
+    {
+        if (string.IsNullOrEmpty(SolutionPath) || !File.Exists(SolutionPath))
+        {
+            return;
+        }
+
+        var info = new ProcessStartInfo
+        {
+            FileName = path,
+            Arguments = "\"" + SolutionPath + "\"",
+            UseShellExecute = true
+        };
+
+        Process.Start(info);
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is not Project other)
@@ -44,14 +86,14 @@ public class Project
         }
 
         if (ProjectName == other.ProjectName
-            || PublishPath == other.PublishPath &&
-            (!string.IsNullOrEmpty(PublishPath) || !string.IsNullOrEmpty(other.PublishPath))
-            || DebugPath == other.DebugPath &&
-            (!string.IsNullOrEmpty(DebugPath) || !string.IsNullOrEmpty(other.DebugPath))
-            || ReleasePath == other.ReleasePath &&
-            (!string.IsNullOrEmpty(ReleasePath) || !string.IsNullOrEmpty(other.ReleasePath))
-            || SolutionPath == other.SolutionPath &&
-            (!string.IsNullOrEmpty(SolutionPath) || !string.IsNullOrEmpty(other.SolutionPath)))
+            || (PublishPath == other.PublishPath &&
+                (!string.IsNullOrEmpty(PublishPath) || !string.IsNullOrEmpty(other.PublishPath)))
+            || (DebugPath == other.DebugPath &&
+                (!string.IsNullOrEmpty(DebugPath) || !string.IsNullOrEmpty(other.DebugPath)))
+            || (ReleasePath == other.ReleasePath &&
+                (!string.IsNullOrEmpty(ReleasePath) || !string.IsNullOrEmpty(other.ReleasePath)))
+            || (SolutionPath == other.SolutionPath &&
+                (!string.IsNullOrEmpty(SolutionPath) || !string.IsNullOrEmpty(other.SolutionPath))))
         {
             return true;
         }
