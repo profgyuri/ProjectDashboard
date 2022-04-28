@@ -14,7 +14,7 @@
         Background="#222"
         Foreground="#43A2FF"
         AllowsTransparency="True"
-        Height="450" Width="400">
+        Height="555" Width="400">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -96,6 +96,7 @@
 
                                         <TextBlock
                                             Grid.Column="0"
+                                            TextTrimming="CharacterEllipsis"
                                             Text="{Binding ProjectName}"/>
                                         <Menu
                                             Grid.Column="1"
@@ -115,12 +116,15 @@
                                                 </MenuItem>
                                                 <MenuItem
                                                     Header="Open Solution"
-                                                    Icon="{materialDesign:PackIcon Kind=PackageOpen}">
+                                                    Icon="{materialDesign:PackIcon Kind=FileCode}">
                                                     <MenuItem
                                                         Header="With Visual Studio"/>
                                                     <MenuItem
                                                         Header="With Rider"/>
                                                 </MenuItem>
+                                                <MenuItem
+                                                    Header="Edit"
+                                                    Icon="{materialDesign:PackIcon Kind=Edit}"/>
                                                 <MenuItem
                                                     Header="Remove From List"
                                                     Icon="{materialDesign:PackIcon Kind=Remove}"/>
@@ -137,25 +141,66 @@
                     </Style>
                 </Grid.Resources>
 
-                <ListView
-                    ItemsSource="{Binding Standalones }"
-                    FontSize="20"/>
-                <ListView
-                    Grid.Row="1"
-                    ItemsSource="{Binding Integrated}"
-                    FontSize="20"/>
-                <Button
-                    Grid.Row="2"
-                    Content="Add Standalone"
-                    Click="AddStandaloneButton_Click"
-                    Command="{Binding AddStandaloneCommand}"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    materialDesign:RippleAssist.IsDisabled="True"
+                <GroupBox
+                    Grid.Row="0"
+                    FontSize="24"
+                    Padding="0"
                     BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
-                    Background="Transparent"
-                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"/>
-                
+                    Margin="0 0 0 20">
+                    <GroupBox.Header>
+                        <Border
+                            Background="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+                            Margin="0">
+                            <TextBlock
+                                Text="Standalones"
+                                Margin="10 5 10 10"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
+                        </Border>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListView
+                            ItemsSource="{Binding Standalones }"
+                            FontSize="20"/>
+                        <Button
+                            Grid.Row="1"
+                            Content="New +"
+                            Margin="10"
+                            Click="AddStandaloneButton_Click"
+                            Command="{Binding AddStandaloneCommand}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            materialDesign:RippleAssist.IsDisabled="True"
+                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+                            Background="Transparent"
+                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"/>
+
+                    </Grid>
+                </GroupBox>
+                <GroupBox
+                    Grid.Row="1"
+                    FontSize="24"
+                    Padding="0"
+                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}">
+                    <GroupBox.Header>
+                        <Border
+                            Background="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+                            Margin="0">
+                            <TextBlock
+                                Text="Integrated"
+                                Margin="10 5 10 10"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
+                        </Border>
+                    </GroupBox.Header>
+                    <ListView
+                        ItemsSource="{Binding Integrated}"
+                        FontSize="20"/>
+                </GroupBox>
+
             </Grid>
 
         </Grid>
