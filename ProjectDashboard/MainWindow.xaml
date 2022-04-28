@@ -135,10 +135,14 @@
                                                 </MenuItem>
                                                 <MenuItem
                                                     Header="Edit"
-                                                    Icon="{materialDesign:PackIcon Kind=Edit}"/>
+                                                    Icon="{materialDesign:PackIcon Kind=Edit}"
+                                                    Tag="{Binding}"
+                                                    Click="EditItem_Click"/>
                                                 <MenuItem
                                                     Header="Remove From List"
-                                                    Icon="{materialDesign:PackIcon Kind=Remove}"/>
+                                                    Icon="{materialDesign:PackIcon Kind=Remove}"
+                                                    Click="RemoveItem_Click"
+                                                    Tag="{Binding}"/>
                                             </MenuItem>
                                         </Menu>
 

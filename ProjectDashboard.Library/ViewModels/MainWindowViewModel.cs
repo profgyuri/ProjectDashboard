@@ -45,4 +45,33 @@ public partial class MainWindowViewModel : ObservableObject
             await SettingsManager.SaveProjectsAsync(Standalones);
         }
     }
+
+    public async Task RemoveStandalone(Project project)
+    {
+        if (project is null)
+        {
+            return;
+        }
+
+        if (Standalones.Any(x => x.Equals(project)))
+        {
+            Standalones.Remove(project);
+            await SettingsManager.SaveProjectsAsync(Standalones);
+        }
+    }
+
+    public async Task EditStandalone(Project old, Project edited)
+    {
+        if (old is null || edited is null)
+        {
+            return;
+        }
+
+        if (Standalones.Any(x => x.Equals(old)))
+        {
+            var oldIndex = Standalones.IndexOf(old);
+            Standalones[oldIndex] = edited;
+            await SettingsManager.SaveProjectsAsync(Standalones);
+        }
+    }
 }
