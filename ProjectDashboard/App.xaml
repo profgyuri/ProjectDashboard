@@ -10,6 +10,12 @@
                 <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="LightBlue" SecondaryColor="Cyan" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="SixtyColor">#222</Color>
+            <Color x:Key="ThirtyColor">#43A2FF</Color>
+            <Color x:Key="TenColor">#FFDC36</Color>
+            <SolidColorBrush x:Key="SixtyBrush" Color="{StaticResource SixtyColor}"/>
+            <SolidColorBrush x:Key="ThirtyBrush" Color="{StaticResource ThirtyColor}"/>
+            <SolidColorBrush x:Key="TenBrush" Color="{StaticResource TenColor}"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

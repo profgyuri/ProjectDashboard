@@ -11,8 +11,8 @@
         Title="Dashboard"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Background="#222"
-        Foreground="#43A2FF"
+        Background="{StaticResource SixtyBrush}"
+        Foreground="{StaticResource ThirtyBrush}"
         AllowsTransparency="True"
         Height="555" Width="400">
 
@@ -27,7 +27,7 @@
     <Border
         CornerRadius="8"
         BorderThickness="2"
-        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+        BorderBrush="{StaticResource ThirtyBrush}"
         Padding="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -44,6 +44,7 @@
                     Grid.Column="0"
                     Text="Dashboard"
                     FontSize="24"
+                    FontWeight="DemiBold"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
                 <Button
@@ -53,7 +54,9 @@
                     VerticalAlignment="Center"
                     materialDesign:RippleAssist.IsDisabled="True"
                     Content="{materialDesign:PackIcon Kind=Close, Size=16}"
-                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}" Click="CloseButton_Click"/>
+                    Foreground="{StaticResource TenBrush}"
+                    BorderBrush="{StaticResource TenBrush}"
+                    Click="CloseButton_Click"/>
 
             </Grid>
 
@@ -84,7 +87,7 @@
                                 </Style>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground }"/>
+                        <Setter Property="Foreground" Value="{StaticResource ThirtyBrush}"/>
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate DataType="models:Project">
@@ -101,7 +104,7 @@
                                         <Menu
                                             Grid.Column="1"
                                             materialDesign:RippleAssist.IsDisabled="True"
-                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}">
+                                            Foreground="{StaticResource TenBrush}">
                                             <MenuItem
                                                 Header="{materialDesign:PackIcon Kind=Gear}">
                                                 <MenuItem
@@ -141,65 +144,76 @@
                     </Style>
                 </Grid.Resources>
 
-                <GroupBox
+                <Border
                     Grid.Row="0"
-                    FontSize="24"
-                    Padding="0"
-                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+                    BorderBrush="{StaticResource ThirtyBrush}"
+                    BorderThickness="1"
                     Margin="0 0 0 20">
-                    <GroupBox.Header>
-                        <Border
-                            Background="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
-                            Margin="0">
-                            <TextBlock
-                                Text="Standalones"
-                                Margin="10 5 10 10"
-                                Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
-                        </Border>
-                    </GroupBox.Header>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                    <GroupBox
+                        Grid.Row="0"
+                        FontSize="24"
+                        Padding="0"
+                        BorderThickness="0">
+                        <GroupBox.Header>
+                            <Border
+                                Background="{StaticResource ThirtyBrush}"
+                                Margin="0">
+                                <TextBlock
+                                    Text="Standalones"
+                                    Margin="10 5 10 10"
+                                    FontWeight="DemiBold"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
+                            </Border>
+                        </GroupBox.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <ListView
-                            ItemsSource="{Binding Standalones }"
-                            FontSize="20"/>
-                        <Button
-                            Grid.Row="1"
-                            Content="New +"
-                            Margin="10"
-                            Click="AddStandaloneButton_Click"
-                            Command="{Binding AddStandaloneCommand}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center"
-                            materialDesign:RippleAssist.IsDisabled="True"
-                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
-                            Background="Transparent"
-                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"/>
+                            <ListView
+                                ItemsSource="{Binding Standalones }"
+                                FontSize="20"/>
+                            <Button
+                                Grid.Row="1"
+                                Content="New +"
+                                Margin="10"
+                                Click="AddStandaloneButton_Click"
+                                Command="{Binding AddStandaloneCommand}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                materialDesign:RippleAssist.IsDisabled="True"
+                                BorderBrush="{StaticResource TenBrush}"
+                                Background="Transparent"
+                                Foreground="{StaticResource TenBrush}"/>
 
-                    </Grid>
-                </GroupBox>
-                <GroupBox
+                        </Grid>
+                    </GroupBox>
+                </Border>
+                <Border
                     Grid.Row="1"
-                    FontSize="24"
-                    Padding="0"
-                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}">
-                    <GroupBox.Header>
-                        <Border
-                            Background="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
-                            Margin="0">
-                            <TextBlock
-                                Text="Integrated"
-                                Margin="10 5 10 10"
-                                Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
-                        </Border>
-                    </GroupBox.Header>
-                    <ListView
-                        ItemsSource="{Binding Integrated}"
-                        FontSize="20"/>
-                </GroupBox>
+                    BorderBrush="{StaticResource ThirtyBrush}"
+                    BorderThickness="1">
+                    <GroupBox
+                        FontSize="24"
+                        Padding="0"
+                        BorderThickness ="0">
+                        <GroupBox.Header>
+                            <Border
+                                Background="{StaticResource ThirtyBrush}"
+                                Margin="0">
+                                <TextBlock
+                                    Text="Integrated"
+                                    Margin="10 5 10 10"
+                                    FontWeight="DemiBold"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
+                            </Border>
+                        </GroupBox.Header>
+                        <ListView
+                            ItemsSource="{Binding Integrated}"
+                            FontSize="20"/>
+                    </GroupBox>
+                </Border>
 
             </Grid>
 
