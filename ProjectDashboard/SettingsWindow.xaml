@@ -40,7 +40,7 @@
     <Border
         CornerRadius="8"
         BorderThickness="2"
-        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+        BorderBrush="{StaticResource ThirtyBrush}"
         Padding="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -86,8 +86,18 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    FontSize="20"
-                    Text="{Binding ProjectObject.ProjectName}"/>
+                    FontSize="20">
+                    <TextBox.Text>
+                        <Binding
+                            Path="ProjectObject.ProjectName"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:ProjectNameValidation
+                                    ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <TextBlock
                     Grid.Row="1"

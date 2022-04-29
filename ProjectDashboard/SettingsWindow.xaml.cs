@@ -52,11 +52,14 @@ public partial class SettingsWindow : Window
     {
         Result = (DataContext as SettingsWindowViewModel).ProjectObject;
 
-        if (!string.IsNullOrEmpty(Result?.ProjectName ?? ""))
+        if (string.IsNullOrEmpty(Result?.ProjectName ?? ""))
         {
-            DialogResult = true;
-            Close();
+            NameFieldBox.Focus();
+            return;
         }
+
+        DialogResult = true;
+        Close();
     }
 
     private void CancelButton_Click(object sender, RoutedEventArgs e)
