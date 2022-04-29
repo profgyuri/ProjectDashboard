@@ -82,6 +82,7 @@
                     VerticalAlignment="Center"/>
                 <TextBox
                     x:Name="NameFieldBox"
+                    WindowChrome.IsHitTestVisibleInChrome="True"
                     Grid.Row="0"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
