@@ -27,20 +27,24 @@ public partial class SettingsWindow : Window
         SetDefaults(project);
     }
 
-    private void SetDefaults(Project project)
+    private void SetDefaults(Project? project)
     {
         var context = DataContext as SettingsWindowViewModel;
         context.ProjectObject = project ?? new Project();
 
         if (string.IsNullOrEmpty(context.ProjectObject.ProjectName))
         {
-            context.NameFieldVisible = true;
-            context.Height = 350;
+            NameBlock.Visibility = Visibility.Collapsed;
+            NameFieldLabel.Visibility = Visibility.Visible;
+            NameFieldBox.Visibility = Visibility.Visible;
+            Height = 350;
         }
         else
         {
-            context.NameFieldVisible = false;
-            context.Height = 290;
+            NameBlock.Visibility = Visibility.Visible;
+            NameFieldLabel.Visibility = Visibility.Collapsed;
+            NameFieldBox.Visibility = Visibility.Collapsed;
+            Height = 330;
         }
     }
 

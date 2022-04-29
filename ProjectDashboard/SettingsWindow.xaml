@@ -13,7 +13,7 @@
         Background="#222"
         Foreground="#43A2FF"
         AllowsTransparency="True"
-        Height="{Binding Height}" Width="600">
+        Width="600">
 
     <Window.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -26,7 +26,6 @@
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Margin" Value="10" />
         </Style>
-        <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
     </Window.Resources>
 
     <Window.DataContext>
@@ -50,10 +49,10 @@
             </Grid.RowDefinitions>
 
             <TextBlock
+                x:Name="NameBlock"
                 Text="{Binding ProjectObject.ProjectName}"
                 HorizontalAlignment="Center"
                 FontSize="24"
-                Visibility="{Binding NameFieldVisible, Converter={StaticResource BoolToVisibility}}"
                 Margin="0 0 0 10"/>
 
             <Grid
@@ -74,17 +73,17 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
+                    x:Name="NameFieldLabel"
                     Grid.Row="0"
                     Grid.Column="0"
                     Text="Name: "
                     FontSize="20"
-                    Visibility="{Binding NameFieldVisible, Converter={StaticResource BoolToVisibility}}"
                     VerticalAlignment="Center"/>
                 <TextBox
+                    x:Name="NameFieldBox"
                     Grid.Row="0"
                     Grid.Column="1"
                     FontSize="20"
-                    Visibility="{Binding NameFieldVisible, Converter={StaticResource BoolToVisibility}}"
                     Text="{Binding ProjectObject.ProjectName}"/>
 
                 <TextBlock

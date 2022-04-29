@@ -6,8 +6,6 @@ namespace ProjectDashboard.Library.ViewModels;
 public partial class SettingsWindowViewModel : ObservableObject
 {
     [ObservableProperty] private Project _projectObject;
-    [ObservableProperty] private int _height;
-    [ObservableProperty] private bool _nameFieldVisible;
 
     public SettingsWindowViewModel()
     {
