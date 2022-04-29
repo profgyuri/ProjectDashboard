@@ -42,10 +42,15 @@ public partial class MainWindow : Window
         var vm = DataContext as MainWindowViewModel;
         var menuItem = sender as MenuItem;
         var entityToEdit = menuItem.Tag as Library.Models.Project;
+        var unChanged = entityToEdit.Clone();
         var window = new SettingsWindow(entityToEdit);
         if (window.ShowDialog() == true)
         {
             vm.EditStandalone(entityToEdit, window.Result).ConfigureAwait(false);
+        }
+        else
+        {
+            menuItem.Tag = unChanged;
         }
     }
 }

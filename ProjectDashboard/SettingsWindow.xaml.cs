@@ -87,23 +87,27 @@ public partial class SettingsWindow : Window
     {
         var context = DataContext as SettingsWindowViewModel;
         context.ProjectObject.PublishPath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
+        context.UpdateUI();
     }
 
     private void DebugButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
         context.ProjectObject.DebugPath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
+        context.UpdateUI();
     }
 
     private void ReleaseButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
         context.ProjectObject.ReleasePath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
+        context.UpdateUI();
     }
 
     private void SolutionButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
-        context.ProjectObject.ReleasePath = GetPathFromFileBrowser("Solution files (*.sln)|*.sln");
+        context.ProjectObject.SolutionPath = GetPathFromFileBrowser("Solution files (*.sln)|*.sln");
+        context.UpdateUI();
     }
 }

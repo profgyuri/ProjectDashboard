@@ -112,15 +112,15 @@
                                                     Icon="{materialDesign:PackIcon Kind=OpenInApp}">
                                                     <MenuItem
                                                         Header="Published"
-                                                        Command="{Binding OpenExeCommand}"
+                                                        Command="{Binding OpenPublishedCommand}"
                                                         CommandParameter="{Binding PublishPath}"/>
                                                     <MenuItem
                                                         Header="Debug build"
-                                                        Command="{Binding OpenExeCommand}"
+                                                        Command="{Binding OpenDebugCommand}"
                                                         CommandParameter="{Binding DebugPath}"/>
                                                     <MenuItem
                                                         Header="Release build"
-                                                        Command="{Binding OpenExeCommand}"
+                                                        Command="{Binding OpenReleaseCommand}"
                                                         CommandParameter="{Binding ReleasePath}"/>
                                                 </MenuItem>
                                                 <MenuItem

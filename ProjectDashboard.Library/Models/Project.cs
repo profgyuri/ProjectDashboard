@@ -41,6 +41,23 @@ public partial class Project
     }
 
     [ICommand]
+    public void OpenPublished()
+    {
+        OpenExe(PublishPath);
+    }
+
+    [ICommand]
+    public void OpenDebug()
+    {
+        OpenExe(DebugPath);
+    }
+
+    [ICommand]
+    public void OpenRelease()
+    {
+        OpenExe(ReleasePath);
+    }
+
     public void OpenExe(string path)
     {
         if (!string.IsNullOrEmpty(path) && File.Exists(path))
@@ -99,5 +116,17 @@ public partial class Project
         }
 
         return false;
+    }
+
+    public Project Clone()
+    {
+        return new Project
+        {
+            ProjectName = ProjectName,
+            PublishPath = PublishPath,
+            DebugPath = DebugPath,
+            ReleasePath = ReleasePath,
+            SolutionPath = SolutionPath
+        };
     }
 }

@@ -11,4 +11,9 @@ public partial class SettingsWindowViewModel : ObservableObject
     {
         ProjectObject = new Project();
     }
+
+    public void UpdateUI()
+    {
+        OnPropertyChanged(nameof(ProjectObject));
+    }
 }
