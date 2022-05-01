@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectDashboard"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:models="clr-namespace:ProjectDashboard.Library.Models;assembly=ProjectDashboard.Library"
         xmlns:vm="clr-namespace:ProjectDashboard.Library.ViewModels;assembly=ProjectDashboard.Library"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -34,6 +35,27 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <tb:TaskbarIcon
+                x:Name="taskbarIcon"
+                Grid.Row="0"
+                TrayMouseDoubleClick="taskbarIcon_TrayMouseDoubleClick"
+                Visibility="Collapsed">
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu
+                        Foreground="{StaticResource TenBrush}"
+                        Background="{StaticResource SixtyBrush}"
+                        materialDesign:RippleAssist.IsDisabled="True">
+                        <MenuItem
+                            Header="Open"
+                            Click="taskbarIcon_TrayMouseDoubleClick"/>
+                        <Separator/>
+                        <MenuItem
+                            Header="Close"
+                            Click="CloseMenuItem_Click"/>
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
 
             <!-- Title bar -->
             <Grid

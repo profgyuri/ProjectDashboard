@@ -12,11 +12,14 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        taskbarIcon.Icon = new System.Drawing.Icon("dashboard.ico");
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
-        Close();
+        Visibility = Visibility.Collapsed;
+        taskbarIcon.Visibility = Visibility.Visible;
     }
 
     private void AddStandaloneButton_Click(object sender, RoutedEventArgs e)
@@ -52,5 +55,16 @@ public partial class MainWindow : Window
         {
             menuItem.Tag = unChanged;
         }
+    }
+
+    private void taskbarIcon_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+    {
+        Visibility = Visibility.Visible;
+        taskbarIcon.Visibility = Visibility.Collapsed;
+    }
+
+    private void CloseMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
     }
 }
