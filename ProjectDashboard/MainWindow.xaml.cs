@@ -28,28 +28,28 @@ public partial class MainWindow : Window
 
         if (window.ShowDialog() == true)
         {
-            (DataContext as MainWindowViewModel).AddStandalone(window.Result).ConfigureAwait(false);
+            (DataContext as MainWindowViewModel)!.AddStandalone(window.Result).ConfigureAwait(false);
         }
     }
 
     private void RemoveItem_Click(object sender, RoutedEventArgs e)
     {
         var menuItem = sender as MenuItem;
-        var entityToRemove = menuItem.Tag as Library.Models.Project;
+        var entityToRemove = menuItem!.Tag as Library.Models.Project;
         var vm = DataContext as MainWindowViewModel;
-        vm.RemoveStandalone(entityToRemove).ConfigureAwait(false);
+        vm!.RemoveStandalone(entityToRemove!).ConfigureAwait(false);
     }
 
     private void EditItem_Click(object sender, RoutedEventArgs e)
     {
         var vm = DataContext as MainWindowViewModel;
         var menuItem = sender as MenuItem;
-        var entityToEdit = menuItem.Tag as Library.Models.Project;
-        var unChanged = entityToEdit.Clone();
+        var entityToEdit = menuItem!.Tag as Library.Models.Project;
+        var unChanged = entityToEdit!.Clone();
         var window = new SettingsWindow(entityToEdit);
         if (window.ShowDialog() == true)
         {
-            vm.EditStandalone(entityToEdit, window.Result).ConfigureAwait(false);
+            vm!.EditStandalone(entityToEdit, window.Result).ConfigureAwait(false);
         }
         else
         {
@@ -57,7 +57,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void taskbarIcon_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+    private void ShowWindow_Click(object sender, RoutedEventArgs e)
     {
         Visibility = Visibility.Visible;
         taskbarIcon.Visibility = Visibility.Collapsed;

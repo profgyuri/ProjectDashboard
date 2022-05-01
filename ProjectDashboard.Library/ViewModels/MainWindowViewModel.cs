@@ -48,11 +48,6 @@ public partial class MainWindowViewModel : ObservableObject
 
     public async Task RemoveStandalone(Project project)
     {
-        if (project is null)
-        {
-            return;
-        }
-
         if (Standalones.Any(x => x.Equals(project)))
         {
             Standalones.Remove(project);

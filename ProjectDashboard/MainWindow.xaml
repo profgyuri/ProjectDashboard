@@ -39,7 +39,7 @@
             <tb:TaskbarIcon
                 x:Name="taskbarIcon"
                 Grid.Row="0"
-                TrayMouseDoubleClick="taskbarIcon_TrayMouseDoubleClick"
+                TrayMouseDoubleClick="ShowWindow_Click"
                 Visibility="Collapsed">
                 <tb:TaskbarIcon.ContextMenu>
                     <ContextMenu
@@ -48,7 +48,7 @@
                         materialDesign:RippleAssist.IsDisabled="True">
                         <MenuItem
                             Header="Open"
-                            Click="taskbarIcon_TrayMouseDoubleClick"/>
+                            Click="ShowWindow_Click"/>
                         <Separator/>
                         <MenuItem
                             Header="Close"
