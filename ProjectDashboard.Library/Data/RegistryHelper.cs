@@ -1,8 +1,9 @@
-﻿using Microsoft.Win32;
+﻿using System.Reflection;
+using Microsoft.Win32;
 
 namespace ProjectDashboard.Library.Data;
 
-internal static class RegistryHelper
+public static class RegistryHelper
 {
     internal static string? GetRiderPath()
     {
@@ -17,6 +18,19 @@ internal static class RegistryHelper
         catch (Exception)
         {
             return null;
+        }
+    }
+
+    public static void StartWithWindows(bool start)
+    {
+        var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+        if (start)
+        {
+            key.SetValue("ProjectDashboard", Assembly.GetExecutingAssembly().Location);
+        }
+        else
+        {
+            key.DeleteValue("ProjectDashboard", false);
         }
     }
 }

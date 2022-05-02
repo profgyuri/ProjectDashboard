@@ -49,6 +49,12 @@
                         <MenuItem
                             Header="Open"
                             Click="ShowWindow_Click"/>
+                        <MenuItem
+                            Header="Start with Windows"
+                            IsCheckable="True"
+                            Checked="MenuItem_OnChecked"
+                            Unchecked="MenuItem_OnUnchecked"
+                            IsChecked="False"/>
                         <Separator/>
                         <MenuItem
                             Header="Close"

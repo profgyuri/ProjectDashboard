@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using ProjectDashboard.Library.Data;
 using ProjectDashboard.Library.ViewModels;
 
 namespace ProjectDashboard;
@@ -81,5 +82,15 @@ public partial class MainWindow : Window
         var asToggleButton = sender as ToggleButton;
         var project = asToggleButton!.Tag as Library.Models.Integrated;
         project!.Stop();
+    }
+
+    private void MenuItem_OnChecked(object sender, RoutedEventArgs e)
+    {
+        RegistryHelper.StartWithWindows(true);
+    }
+
+    private void MenuItem_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        RegistryHelper.StartWithWindows(false);
     }
 }
