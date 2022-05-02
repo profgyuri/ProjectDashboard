@@ -263,6 +263,9 @@
                                         <ToggleButton
                                             Grid.Column="1"
                                             Margin="10 0"
+                                            Tag="{Binding}"
+                                            Checked="ToggleButton_Checked"
+                                            Unchecked="ToggleButton_Unchecked"
                                             Style="{StaticResource MaterialDesignSwitchToggleButton}"
                                             IsChecked="True" />
                                         <Menu

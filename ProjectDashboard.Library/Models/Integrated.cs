@@ -25,18 +25,60 @@ namespace ProjectDashboard.Library.Models;
 /// </example>
 public abstract partial class Integrated : Project
 {
-    protected Integrated()
-    {
-    }
+    public ServiceStatus Status { get; set; }
 
-    protected Integrated(string name)
+    [ICommand]
+    public void Start()
     {
-        ProjectName = name;
+        if (Status is ServiceStatus.Running or ServiceStatus.Starting)
+        {
+            return;
+        }
+
+        Status = ServiceStatus.Starting;
+        OnStarting();
+        Status = ServiceStatus.Running;
+        OnStarted();
     }
 
     [ICommand]
-    public abstract void Start();
+    public void Stop()
+    {
+        if (Status is ServiceStatus.Stopped or ServiceStatus.Stopping)
+        {
+            return;
+        }
+
+        Status = ServiceStatus.Stopping;
+        OnStopping();
+        Status = ServiceStatus.Stopped;
+        OnStopped();
+    }
 
     [ICommand]
-    public abstract void Stop();
+    public void Restart()
+    {
+        Stop();
+        Start();
+    }
+
+    /// <summary>
+    ///     Called to start the service.
+    /// </summary>
+    protected abstract void OnStarting();
+
+    /// <summary>
+    ///     Called when the service is started.
+    /// </summary>
+    protected abstract void OnStarted();
+
+    /// <summary>
+    ///     Called to stop the service.
+    /// </summary>
+    protected abstract void OnStopping();
+
+    /// <summary>
+    ///     Called when the service is stopped.
+    /// </summary>
+    protected abstract void OnStopped();
 }

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using ProjectDashboard.Library.ViewModels;
 
 namespace ProjectDashboard;
@@ -66,5 +67,19 @@ public partial class MainWindow : Window
     private void CloseMenuItem_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+    {
+        var asToggleButton = sender as ToggleButton;
+        var project = asToggleButton!.Tag as Library.Models.Integrated;
+        project!.Start();
+    }
+
+    private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+    {
+        var asToggleButton = sender as ToggleButton;
+        var project = asToggleButton!.Tag as Library.Models.Integrated;
+        project!.Stop();
     }
 }

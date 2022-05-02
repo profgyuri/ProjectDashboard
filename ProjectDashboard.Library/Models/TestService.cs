@@ -1,8 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿namespace ProjectDashboard.Library.Models;
 
-namespace ProjectDashboard.Library.Models;
-
-public partial class TestService : Integrated
+public class TestService : Integrated
 {
     public TestService()
     {
@@ -13,13 +11,19 @@ public partial class TestService : Integrated
         ProjectName = name;
     }
 
-    [ICommand]
-    public override void Start()
+    protected override void OnStarted()
     {
     }
 
-    [ICommand]
-    public override void Stop()
+    protected override void OnStarting()
+    {
+    }
+
+    protected override void OnStopped()
+    {
+    }
+
+    protected override void OnStopping()
     {
     }
 }
