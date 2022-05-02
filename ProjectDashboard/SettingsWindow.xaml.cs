@@ -11,7 +11,7 @@ namespace ProjectDashboard;
 public partial class SettingsWindow : Window
 {
     private string _previousPath;
-    public Project Result { get; set; }
+    public Standalone Result { get; set; }
 
     public SettingsWindow()
     {
@@ -20,19 +20,19 @@ public partial class SettingsWindow : Window
         SetDefaults(null);
     }
 
-    public SettingsWindow(Project project)
+    public SettingsWindow(Standalone standalone)
     {
         InitializeComponent();
 
-        SetDefaults(project);
+        SetDefaults(standalone);
     }
 
-    private void SetDefaults(Project? project)
+    private void SetDefaults(Standalone? project)
     {
         var context = DataContext as SettingsWindowViewModel;
-        context.ProjectObject = project ?? new Project();
+        context.StandaloneObject = project ?? new Standalone();
 
-        if (string.IsNullOrEmpty(context.ProjectObject.ProjectName))
+        if (string.IsNullOrEmpty(context.StandaloneObject.ProjectName))
         {
             NameBlock.Visibility = Visibility.Collapsed;
             NameFieldLabel.Visibility = Visibility.Visible;
@@ -50,7 +50,7 @@ public partial class SettingsWindow : Window
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
-        Result = (DataContext as SettingsWindowViewModel).ProjectObject;
+        Result = (DataContext as SettingsWindowViewModel).StandaloneObject;
 
         if (string.IsNullOrEmpty(Result?.ProjectName ?? ""))
         {
@@ -89,28 +89,28 @@ public partial class SettingsWindow : Window
     private void PublishedButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
-        context.ProjectObject.PublishPath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
+        context.StandaloneObject.PublishPath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
         context.UpdateUI();
     }
 
     private void DebugButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
-        context.ProjectObject.DebugPath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
+        context.StandaloneObject.DebugPath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
         context.UpdateUI();
     }
 
     private void ReleaseButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
-        context.ProjectObject.ReleasePath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
+        context.StandaloneObject.ReleasePath = GetPathFromFileBrowser("Executables (*.exe)|*.exe");
         context.UpdateUI();
     }
 
     private void SolutionButton_Click(object sender, RoutedEventArgs e)
     {
         var context = DataContext as SettingsWindowViewModel;
-        context.ProjectObject.SolutionPath = GetPathFromFileBrowser("Solution files (*.sln)|*.sln");
+        context.StandaloneObject.SolutionPath = GetPathFromFileBrowser("Solution files (*.sln)|*.sln");
         context.UpdateUI();
     }
 }

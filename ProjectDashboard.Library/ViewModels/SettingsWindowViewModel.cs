@@ -5,15 +5,15 @@ namespace ProjectDashboard.Library.ViewModels;
 
 public partial class SettingsWindowViewModel : ObservableObject
 {
-    [ObservableProperty] private Project _projectObject;
+    [ObservableProperty] private Standalone _standaloneObject;
 
     public SettingsWindowViewModel()
     {
-        ProjectObject = new Project();
+        StandaloneObject = new Standalone();
     }
 
     public void UpdateUI()
     {
-        OnPropertyChanged(nameof(ProjectObject));
+        OnPropertyChanged(nameof(StandaloneObject));
     }
 }

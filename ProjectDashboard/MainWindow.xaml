@@ -91,7 +91,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.Resources>
-                    <Style TargetType="ListView" BasedOn="{StaticResource {x:Type ListView}}">
+                    <Style
+                        TargetType="ListView"
+                        BasedOn="{StaticResource {x:Type ListView}}">
                         <Setter Property="ItemsPanel">
                             <Setter.Value>
                                 <ItemsPanelTemplate>
@@ -110,68 +112,6 @@
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Foreground" Value="{StaticResource ThirtyBrush}"/>
-                        <Setter Property="ItemTemplate">
-                            <Setter.Value>
-                                <DataTemplate DataType="models:Project">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            TextTrimming="CharacterEllipsis"
-                                            Text="{Binding ProjectName}"/>
-                                        <Menu
-                                            Grid.Column="1"
-                                            materialDesign:RippleAssist.IsDisabled="True"
-                                            Foreground="{StaticResource TenBrush}">
-                                            <MenuItem
-                                                Header="{materialDesign:PackIcon Kind=Gear}">
-                                                <MenuItem
-                                                    Header="Open .exe"
-                                                    Icon="{materialDesign:PackIcon Kind=OpenInApp}">
-                                                    <MenuItem
-                                                        Header="Published"
-                                                        Command="{Binding OpenPublishedCommand}"
-                                                        CommandParameter="{Binding PublishPath}"/>
-                                                    <MenuItem
-                                                        Header="Debug build"
-                                                        Command="{Binding OpenDebugCommand}"
-                                                        CommandParameter="{Binding DebugPath}"/>
-                                                    <MenuItem
-                                                        Header="Release build"
-                                                        Command="{Binding OpenReleaseCommand}"
-                                                        CommandParameter="{Binding ReleasePath}"/>
-                                                </MenuItem>
-                                                <MenuItem
-                                                    Header="Open Solution"
-                                                    Icon="{materialDesign:PackIcon Kind=FileCode}">
-                                                    <MenuItem
-                                                        Header="With Visual Studio"
-                                                        Command="{Binding OpenInVSCommand}"/>
-                                                    <MenuItem
-                                                        Header="With Rider"
-                                                        Command="{Binding OpenInRiderCommand}"/>
-                                                </MenuItem>
-                                                <MenuItem
-                                                    Header="Edit"
-                                                    Icon="{materialDesign:PackIcon Kind=Edit}"
-                                                    Tag="{Binding}"
-                                                    Click="EditItem_Click"/>
-                                                <MenuItem
-                                                    Header="Remove From List"
-                                                    Icon="{materialDesign:PackIcon Kind=Remove}"
-                                                    Click="RemoveItem_Click"
-                                                    Tag="{Binding}"/>
-                                            </MenuItem>
-                                        </Menu>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
                         <Setter Property="Height" Value="150"/>
                         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
                         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -207,7 +147,68 @@
 
                             <ListView
                                 ItemsSource="{Binding Standalones }"
-                                FontSize="20"/>
+                                FontSize="20">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate DataType="models:Standalone">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                TextTrimming="CharacterEllipsis"
+                                                Text="{Binding ProjectName}"/>
+                                            <Menu
+                                                Grid.Column="1"
+                                                materialDesign:RippleAssist.IsDisabled="True"
+                                                Foreground="{StaticResource TenBrush}">
+                                                <MenuItem
+                                                    Header="{materialDesign:PackIcon Kind=Menu}">
+                                                    <MenuItem
+                                                        Header="Open .exe"
+                                                        Icon="{materialDesign:PackIcon Kind=OpenInApp}">
+                                                        <MenuItem
+                                                            Header="Published"
+                                                            Command="{Binding OpenPublishedCommand}"
+                                                            CommandParameter="{Binding PublishPath}"/>
+                                                        <MenuItem
+                                                            Header="Debug build"
+                                                            Command="{Binding OpenDebugCommand}"
+                                                            CommandParameter="{Binding DebugPath}"/>
+                                                        <MenuItem
+                                                            Header="Release build"
+                                                            Command="{Binding OpenReleaseCommand}"
+                                                            CommandParameter="{Binding ReleasePath}"/>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        Header="Open Solution"
+                                                        Icon="{materialDesign:PackIcon Kind=FileCode}">
+                                                        <MenuItem
+                                                            Header="With Visual Studio"
+                                                            Command="{Binding OpenInVSCommand}"/>
+                                                        <MenuItem
+                                                            Header="With Rider"
+                                                            Command="{Binding OpenInRiderCommand}"/>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        Header="Edit"
+                                                        Icon="{materialDesign:PackIcon Kind=Edit}"
+                                                        Tag="{Binding}"
+                                                        Click="EditItem_Click"/>
+                                                    <MenuItem
+                                                        Header="Remove From List"
+                                                        Icon="{materialDesign:PackIcon Kind=Remove}"
+                                                        Click="RemoveItem_Click"
+                                                        Tag="{Binding}"/>
+                                                </MenuItem>
+                                            </Menu>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                             <Button
                                 Grid.Row="1"
                                 Content="New +"
@@ -245,7 +246,44 @@
                         </GroupBox.Header>
                         <ListView
                             ItemsSource="{Binding Integrated}"
-                            FontSize="20"/>
+                            FontSize="20">
+                            <ListView.ItemTemplate>
+                                <DataTemplate DataType="models:Integrated">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            TextTrimming="CharacterEllipsis"
+                                            Text="{Binding ProjectName}"/>
+                                        <ToggleButton
+                                            Grid.Column="1"
+                                            Margin="10 0"
+                                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                            IsChecked="True" />
+                                        <Menu
+                                                Grid.Column="2"
+                                                materialDesign:RippleAssist.IsDisabled="True"
+                                                Foreground="{StaticResource TenBrush}">
+                                            <MenuItem
+                                                Header="{materialDesign:PackIcon Kind=FileCode}">
+                                                <MenuItem
+                                                    Header="With Visual Studio"
+                                                    Command="{Binding OpenInVSCommand}"/>
+                                                <MenuItem
+                                                    Header="With Rider"
+                                                    Command="{Binding OpenInRiderCommand}"/>
+                                            </MenuItem>
+                                        </Menu>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </GroupBox>
                 </Border>
 

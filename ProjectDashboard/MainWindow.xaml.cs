@@ -35,7 +35,7 @@ public partial class MainWindow : Window
     private void RemoveItem_Click(object sender, RoutedEventArgs e)
     {
         var menuItem = sender as MenuItem;
-        var entityToRemove = menuItem!.Tag as Library.Models.Project;
+        var entityToRemove = menuItem!.Tag as Library.Models.Standalone;
         var vm = DataContext as MainWindowViewModel;
         vm!.RemoveStandalone(entityToRemove!).ConfigureAwait(false);
     }
@@ -44,7 +44,7 @@ public partial class MainWindow : Window
     {
         var vm = DataContext as MainWindowViewModel;
         var menuItem = sender as MenuItem;
-        var entityToEdit = menuItem!.Tag as Library.Models.Project;
+        var entityToEdit = menuItem!.Tag as Library.Models.Standalone;
         var unChanged = entityToEdit!.Clone();
         var window = new SettingsWindow(entityToEdit);
         if (window.ShowDialog() == true)

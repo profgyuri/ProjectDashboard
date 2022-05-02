@@ -51,7 +51,7 @@
 
             <TextBlock
                 x:Name="NameBlock"
-                Text="{Binding ProjectObject.ProjectName}"
+                Text="{Binding StandaloneObject.ProjectName}"
                 HorizontalAlignment="Center"
                 FontSize="24"
                 Margin="0 0 0 10"/>
@@ -89,7 +89,7 @@
                     FontSize="20">
                     <TextBox.Text>
                         <Binding
-                            Path="ProjectObject.ProjectName"
+                            Path="StandaloneObject.ProjectName"
                             UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <local:ProjectNameValidation
@@ -109,7 +109,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     FontSize="20"
-                    Text="{Binding ProjectObject.PublishPath}"/>
+                    Text="{Binding StandaloneObject.PublishPath}"/>
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
@@ -127,7 +127,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     FontSize="20"
-                    Text="{Binding ProjectObject.DebugPath}"/>
+                    Text="{Binding StandaloneObject.DebugPath}"/>
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
@@ -145,7 +145,7 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     FontSize="20"
-                    Text="{Binding ProjectObject.ReleasePath}"/>
+                    Text="{Binding StandaloneObject.ReleasePath}"/>
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
@@ -163,7 +163,7 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     FontSize="20"
-                    Text="{Binding ProjectObject.SolutionPath}"/>
+                    Text="{Binding StandaloneObject.SolutionPath}"/>
                 <Button
                     Grid.Row="4"
                     Grid.Column="2"

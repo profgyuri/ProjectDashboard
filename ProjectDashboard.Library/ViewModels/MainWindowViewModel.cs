@@ -8,13 +8,15 @@ namespace ProjectDashboard.Library.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
-    [ObservableProperty] private ObservableCollection<Project> _standalones;
-    [ObservableProperty] private ObservableCollection<Project> _integrated;
+    [ObservableProperty] private ObservableCollection<Standalone> _standalones;
+    [ObservableProperty] private ObservableCollection<Integrated> _integrated;
 
     public MainWindowViewModel()
     {
-        _standalones = new ObservableCollection<Project>();
-        _integrated = new ObservableCollection<Project>();
+        _standalones = new ObservableCollection<Standalone>();
+        _integrated = new ObservableCollection<Integrated>();
+
+        _integrated.Add(new TestService("Test 1"));
 
         LoadStandalones().ConfigureAwait(false);
     }
@@ -32,30 +34,30 @@ public partial class MainWindowViewModel : ObservableObject
     }
 
     [ICommand]
-    public async Task AddStandalone(Project project)
+    public async Task AddStandalone(Standalone standalone)
     {
-        if (project is null)
+        if (standalone is null)
         {
             return;
         }
 
-        if (!Standalones.Any(x => x.Equals(project)))
+        if (!Standalones.Any(x => x.Equals(standalone)))
         {
-            Standalones.Add(project);
+            Standalones.Add(standalone);
             await SettingsManager.SaveProjectsAsync(Standalones);
         }
     }
 
-    public async Task RemoveStandalone(Project project)
+    public async Task RemoveStandalone(Standalone standalone)
     {
-        if (Standalones.Any(x => x.Equals(project)))
+        if (Standalones.Any(x => x.Equals(standalone)))
         {
-            Standalones.Remove(project);
+            Standalones.Remove(standalone);
             await SettingsManager.SaveProjectsAsync(Standalones);
         }
     }
 
-    public async Task EditStandalone(Project old, Project edited)
+    public async Task EditStandalone(Standalone old, Standalone edited)
     {
         if (old is null || edited is null)
         {
