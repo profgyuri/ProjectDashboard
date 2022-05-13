@@ -16,20 +16,53 @@ public partial class MainWindowViewModel : ObservableObject
         _standalones = new ObservableCollection<Standalone>();
         _integrated = new ObservableCollection<Integrated>();
 
-        _integrated.Add(new TestService("Test 1"));
+        // _integrated.Add(new TestService("Integrated 1"));
 
         LoadStandalones().ConfigureAwait(false);
+        LoadIntegratedProjects().ConfigureAwait(false);
+    }
+
+    public async Task StartIntegrated(Integrated integrated)
+    {
+        var index = Integrated.IndexOf(integrated);
+
+        Integrated[index].Start();
+        OnPropertyChanged(nameof(Integrated));
+
+        await SettingsManager.SaveIntegratedProjectsAsync(Integrated);
+    }
+
+    public async Task StopIntegratedAsync(Integrated integrated)
+    {
+        var index = Integrated.IndexOf(integrated);
+
+        Integrated[index].Stop();
+        OnPropertyChanged(nameof(Integrated));
+
+        await SettingsManager.SaveIntegratedProjectsAsync(Integrated);
     }
 
     private async Task LoadStandalones()
     {
-        var projects = await SettingsManager.GetProjectsAsync();
+        var projects = await SettingsManager.GetStandalonesAsync();
 
         Standalones.Clear();
 
         foreach (var project in projects)
         {
             Standalones.Add(project);
+        }
+    }
+
+    private async Task LoadIntegratedProjects()
+    {
+        var projects = await SettingsManager.GetIntegratedProjectsAsync();
+
+        Integrated.Clear();
+
+        foreach (var project in projects)
+        {
+            Integrated.Add(project);
         }
     }
 
@@ -44,7 +77,7 @@ public partial class MainWindowViewModel : ObservableObject
         if (!Standalones.Any(x => x.Equals(standalone)))
         {
             Standalones.Add(standalone);
-            await SettingsManager.SaveProjectsAsync(Standalones);
+            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
         }
     }
 
@@ -53,7 +86,7 @@ public partial class MainWindowViewModel : ObservableObject
         if (Standalones.Any(x => x.Equals(standalone)))
         {
             Standalones.Remove(standalone);
-            await SettingsManager.SaveProjectsAsync(Standalones);
+            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
         }
     }
 
@@ -68,7 +101,7 @@ public partial class MainWindowViewModel : ObservableObject
         {
             var oldIndex = Standalones.IndexOf(old);
             Standalones[oldIndex] = edited;
-            await SettingsManager.SaveProjectsAsync(Standalones);
+            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
         }
     }
 }

@@ -13,17 +13,21 @@ public class TestService : Integrated
 
     protected override void OnStarted()
     {
+        ProjectName = "Onstarted";
     }
 
     protected override void OnStarting()
     {
+        ProjectName = "OnStarting";
     }
 
     protected override void OnStopped()
     {
+        ProjectName = "OnStopped";
     }
 
     protected override void OnStopping()
     {
+        ProjectName = "OnStopping";
     }
 }

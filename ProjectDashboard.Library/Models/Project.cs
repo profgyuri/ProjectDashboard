@@ -1,19 +1,23 @@
 ﻿using System.Diagnostics;
+using System.Runtime.Serialization;
 using CommunityToolkit.Mvvm.Input;
 using ProjectDashboard.Library.Data;
 
 namespace ProjectDashboard.Library.Models;
 
+[DataContract]
 public abstract partial class Project
 {
     /// <summary>
     ///     Name of the project.
     /// </summary>
+    [DataMember]
     public string ProjectName { get; set; }
 
     /// <summary>
     ///     Path to the solution file.
     /// </summary>
+    [DataMember]
     public string SolutionPath { get; set; }
 
     [ICommand]

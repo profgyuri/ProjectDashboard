@@ -16,6 +16,9 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         taskbarIcon.Icon = new System.Drawing.Icon("dashboard.ico");
+
+        var vm = DataContext as MainWindowViewModel;
+        var integrateds = vm.Integrated;
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -72,24 +75,26 @@ public partial class MainWindow : Window
 
     private void ToggleButton_Checked(object sender, RoutedEventArgs e)
     {
+        var vm = DataContext as MainWindowViewModel;
         var asToggleButton = sender as ToggleButton;
         var project = asToggleButton!.Tag as Library.Models.Integrated;
-        project!.Start();
+        vm!.StartIntegrated(project!).ConfigureAwait(false);
     }
 
     private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
     {
+        var vm = DataContext as MainWindowViewModel;
         var asToggleButton = sender as ToggleButton;
         var project = asToggleButton!.Tag as Library.Models.Integrated;
-        project!.Stop();
+        vm!.StopIntegratedAsync(project!).ConfigureAwait(false);
     }
 
-    private void MenuItem_OnChecked(object sender, RoutedEventArgs e)
+    private void StartWithWindowsMenuItem_OnChecked(object sender, RoutedEventArgs e)
     {
         RegistryHelper.StartWithWindows(true);
     }
 
-    private void MenuItem_OnUnchecked(object sender, RoutedEventArgs e)
+    private void StartWithWindowsMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
     {
         RegistryHelper.StartWithWindows(false);
     }

@@ -52,8 +52,8 @@
                         <MenuItem
                             Header="Start with Windows"
                             IsCheckable="True"
-                            Checked="MenuItem_OnChecked"
-                            Unchecked="MenuItem_OnUnchecked"
+                            Checked="StartWithWindowsMenuItem_OnChecked"
+                            Unchecked="StartWithWindowsMenuItem_OnUnchecked"
                             IsChecked="False"/>
                         <Separator/>
                         <MenuItem
@@ -279,7 +279,7 @@
                                                 materialDesign:RippleAssist.IsDisabled="True"
                                                 Foreground="{StaticResource TenBrush}">
                                             <MenuItem
-                                                Header="{materialDesign:PackIcon Kind=FileCode}">
+                                                Header="Open...">
                                                 <MenuItem
                                                     Header="With Visual Studio"
                                                     Command="{Binding OpenInVSCommand}"/>
