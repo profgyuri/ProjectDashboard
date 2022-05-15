@@ -10,11 +10,27 @@ public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty] private ObservableCollection<Standalone> _standalones;
     [ObservableProperty] private ObservableCollection<Integrated> _integrated;
+    private bool _startsWithWindows;
+
+    public bool StartsWithWindows 
+    { 
+        get => _startsWithWindows;
+        set 
+        {
+            if (_startsWithWindows != value)
+            {
+                _startsWithWindows = value;
+                RegistryHelper.StartWithWindows(value);
+                OnPropertyChanged(nameof(StartsWithWindows));
+            }            
+        }
+    }
 
     public MainWindowViewModel()
     {
         _standalones = new ObservableCollection<Standalone>();
         _integrated = new ObservableCollection<Integrated>();
+        _startsWithWindows = RegistryHelper.StartsWithWindows();
 
         // _integrated.Add(new TestService("Integrated 1"));
 

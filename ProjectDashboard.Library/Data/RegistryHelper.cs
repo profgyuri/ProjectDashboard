@@ -5,6 +5,10 @@ namespace ProjectDashboard.Library.Data;
 
 public static class RegistryHelper
 {
+    /// <summary>
+    ///     Gets the executable path to the Rider IDE.
+    /// </summary>
+    /// <returns></returns>
     internal static string? GetRiderPath()
     {
         try
@@ -21,6 +25,10 @@ public static class RegistryHelper
         }
     }
 
+    /// <summary>
+    ///     Sets a registry key value wheter the program should start with Windows or not.
+    /// </summary>
+    /// <param name="start"></param>
     public static void StartWithWindows(bool start)
     {
         var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
@@ -32,5 +40,15 @@ public static class RegistryHelper
         {
             key.DeleteValue("ProjectDashboard", false);
         }
+    }
+
+    /// <summary>
+    ///     Gets if the program starts up with Windows or not.
+    /// </summary>
+    /// <returns>True, if program starts with Windows.</returns>
+    public static bool StartsWithWindows()
+    {
+        var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+        return key.GetValue("ProjectDashboard") != null;
     }
 }

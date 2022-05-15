@@ -48,16 +48,18 @@
                         materialDesign:RippleAssist.IsDisabled="True">
                         <MenuItem
                             Header="Open"
+                            Icon="{materialDesign:PackIcon Kind=OpenInApp}"
                             Click="ShowWindow_Click"/>
                         <MenuItem
                             Header="Start with Windows"
                             IsCheckable="True"
                             Checked="StartWithWindowsMenuItem_OnChecked"
                             Unchecked="StartWithWindowsMenuItem_OnUnchecked"
-                            IsChecked="False"/>
+                            IsChecked="{Binding StartsWithWindows}"/>
                         <Separator/>
                         <MenuItem
                             Header="Close"
+                            Icon="{materialDesign:PackIcon Kind=Close}"
                             Click="CloseMenuItem_Click"/>
                     </ContextMenu>
                 </tb:TaskbarIcon.ContextMenu>

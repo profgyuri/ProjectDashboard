@@ -91,11 +91,13 @@ public partial class MainWindow : Window
 
     private void StartWithWindowsMenuItem_OnChecked(object sender, RoutedEventArgs e)
     {
-        RegistryHelper.StartWithWindows(true);
+        var vm = DataContext as MainWindowViewModel;
+        vm.StartsWithWindows = true;
     }
 
     private void StartWithWindowsMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
     {
-        RegistryHelper.StartWithWindows(false);
+        var vm = DataContext as MainWindowViewModel;
+        vm.StartsWithWindows = false;
     }
 }
