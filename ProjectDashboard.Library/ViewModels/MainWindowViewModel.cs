@@ -1,10 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿namespace ProjectDashboard.Library.ViewModels;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectDashboard.Library.Data;
 using ProjectDashboard.Library.Models;
-
-namespace ProjectDashboard.Library.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {

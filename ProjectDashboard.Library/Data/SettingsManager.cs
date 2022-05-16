@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿namespace ProjectDashboard.Library.Data;
+using Newtonsoft.Json;
 using ProjectDashboard.Library.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;
-
-namespace ProjectDashboard.Library.Data;
 
 /// <summary>
 ///     Class used to handle application resources.

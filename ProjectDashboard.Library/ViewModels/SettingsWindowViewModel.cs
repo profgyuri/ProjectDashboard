@@ -1,7 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace ProjectDashboard.Library.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProjectDashboard.Library.Models;
-
-namespace ProjectDashboard.Library.ViewModels;
 
 public partial class SettingsWindowViewModel : ObservableObject
 {

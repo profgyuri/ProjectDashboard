@@ -1,6 +1,5 @@
-﻿using System.Windows;
-
-namespace ProjectDashboard;
+﻿namespace ProjectDashboard;
+using System.Windows;
 
 /// <summary>
 ///     Interaction logic for App.xaml

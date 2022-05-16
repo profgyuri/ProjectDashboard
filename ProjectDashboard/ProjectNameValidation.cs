@@ -1,7 +1,6 @@
-﻿using System.Globalization;
+﻿namespace ProjectDashboard;
+using System.Globalization;
 using System.Windows.Controls;
-
-namespace ProjectDashboard;
 
 public class ProjectNameValidation : ValidationRule
 {

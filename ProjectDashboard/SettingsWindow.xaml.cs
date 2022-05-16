@@ -1,9 +1,8 @@
-﻿using System.Windows;
+﻿namespace ProjectDashboard;
+using System.Windows;
 using Microsoft.Win32;
 using ProjectDashboard.Library.Models;
 using ProjectDashboard.Library.ViewModels;
-
-namespace ProjectDashboard;
 
 /// <summary>
 ///     Interaction logic for SettingsWindow.xaml

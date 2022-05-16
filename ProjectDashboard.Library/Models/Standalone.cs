@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
+﻿namespace ProjectDashboard.Library.Models;
+using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
-
-namespace ProjectDashboard.Library.Models;
 
 public partial class Standalone : Project
 {

@@ -1,6 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
-
-namespace ProjectDashboard.Library.Models;
+﻿namespace ProjectDashboard.Library.Models;
+using CommunityToolkit.Mvvm.Input;
 
 /// <summary>
 ///     Class used to represent integrated projects.

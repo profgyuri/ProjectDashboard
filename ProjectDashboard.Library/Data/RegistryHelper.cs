@@ -1,10 +1,10 @@
-﻿using System.Reflection;
+﻿namespace ProjectDashboard.Library.Data;
 using Microsoft.Win32;
-
-namespace ProjectDashboard.Library.Data;
 
 public static class RegistryHelper
 {
+    private static string _exeName = "ProjectDashboard.exe";
+
     /// <summary>
     ///     Gets the executable path to the Rider IDE.
     /// </summary>
@@ -30,11 +30,13 @@ public static class RegistryHelper
     /// </summary>
     /// <param name="start"></param>
     public static void StartWithWindows(bool start)
-    {
+{
         var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
         if (start)
         {
-            key.SetValue("ProjectDashboard", Assembly.GetExecutingAssembly().Location);
+            var location = AppDomain.CurrentDomain.BaseDirectory;
+            var value = Path.Combine(location, _exeName);
+            key.SetValue("ProjectDashboard", value);
         }
         else
         {

@@ -1,9 +1,8 @@
-﻿using System.Diagnostics;
+﻿namespace ProjectDashboard.Library.Models;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using CommunityToolkit.Mvvm.Input;
 using ProjectDashboard.Library.Data;
-
-namespace ProjectDashboard.Library.Models;
 
 [DataContract]
 public abstract partial class Project

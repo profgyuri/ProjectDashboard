@@ -1,10 +1,8 @@
-﻿using System.Windows;
+﻿namespace ProjectDashboard;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using ProjectDashboard.Library.Data;
 using ProjectDashboard.Library.ViewModels;
-
-namespace ProjectDashboard;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
