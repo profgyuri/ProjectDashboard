@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.Win32;
 using ProjectDashboard.Library.Models;
 using ProjectDashboard.Library.ViewModels;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 /// <summary>
 ///     Interaction logic for SettingsWindow.xaml
@@ -12,18 +13,14 @@ public partial class SettingsWindow : Window
     private string _previousPath;
     public Standalone Result { get; set; }
 
-    public SettingsWindow()
-    {
-        InitializeComponent();
-
-        SetDefaults(null);
-    }
-
-    public SettingsWindow(Standalone standalone)
-    {
+    public SettingsWindow(Standalone? standalone, Window parent)
+{
         InitializeComponent();
 
         SetDefaults(standalone);
+
+        Left = parent.Left + (parent.Width - Width) / 2;
+        Top = parent.Top + (parent.Height - Height) / 2;
     }
 
     private void SetDefaults(Standalone? project)

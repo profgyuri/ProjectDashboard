@@ -27,7 +27,7 @@ public partial class MainWindow : Window
 
     private void AddStandaloneButton_Click(object sender, RoutedEventArgs e)
     {
-        var window = new SettingsWindow();
+        var window = new SettingsWindow(null, this);
 
         if (window.ShowDialog() == true)
         {
@@ -49,7 +49,7 @@ public partial class MainWindow : Window
         var menuItem = sender as MenuItem;
         var entityToEdit = menuItem!.Tag as Library.Models.Standalone;
         var unChanged = entityToEdit!.Clone();
-        var window = new SettingsWindow(entityToEdit);
+        var window = new SettingsWindow(entityToEdit, this);
         if (window.ShowDialog() == true)
         {
             vm!.EditStandalone(entityToEdit, window.Result).ConfigureAwait(false);
