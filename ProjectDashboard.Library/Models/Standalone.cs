@@ -1,6 +1,8 @@
 ﻿namespace ProjectDashboard.Library.Models;
-using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
+using ProjectDashboard.Library.Data;
+using System.Diagnostics;
+using System.Runtime.Serialization;
 
 public partial class Standalone : Project
 {
@@ -87,5 +89,54 @@ public partial class Standalone : Project
             ReleasePath = ReleasePath,
             SolutionPath = SolutionPath
         };
+    }
+
+    /// <summary>
+    ///     Path to the solution file.
+    /// </summary>
+    [DataMember]
+    public string SolutionPath { get; set; }
+
+    [ICommand]
+    public void OpenInVS()
+    {
+        OpenSolution("devenv.exe");
+    }
+
+    [ICommand]
+    public void OpenInRider()
+    {
+        OpenSolution(RegistryHelper.GetRiderPath());
+    }
+
+    private void OpenSolution(string path)
+    {
+        if (string.IsNullOrEmpty(SolutionPath) || !File.Exists(SolutionPath))
+        {
+            return;
+        }
+
+        ProcessStartInfo? info = new ProcessStartInfo
+        {
+            FileName = path,
+            Arguments = "\"" + SolutionPath + "\"",
+            UseShellExecute = true
+        };
+
+        Process.Start(info);
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            int hash = 17;
+            hash = ProjectName?.GetHashCode() + hash * 486187739 ?? hash;
+            hash = DebugPath?.GetHashCode() + hash * 486187739 ?? hash;
+            hash = PublishPath?.GetHashCode() + hash * 486187739 ?? hash;
+            hash = ReleasePath?.GetHashCode() + hash * 486187739 ?? hash;
+            hash = SolutionPath?.GetHashCode() + hash * 486187739 ?? hash;
+            return hash;
+        }
     }
 }

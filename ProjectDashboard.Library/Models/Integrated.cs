@@ -6,9 +6,6 @@ using CommunityToolkit.Mvvm.Input;
 /// </summary>
 /// <remarks>
 ///     This class handles only .dll files, thus it cannot interact with a UI.
-///     <para />
-///     The starting mechanism should be exposed, or if the provided service is not <see cref="IDisposable" />,
-///     then the stopping mechanism too.
 /// </remarks>
 /// <example>
 ///     <code>
@@ -34,9 +31,7 @@ public abstract partial class Integrated : Project
             return;
         }
 
-        Status = ServiceStatus.Starting;
         OnStarting();
-        Status = ServiceStatus.Running;
         OnStarted();
     }
 
@@ -48,9 +43,7 @@ public abstract partial class Integrated : Project
             return;
         }
 
-        Status = ServiceStatus.Stopping;
         OnStopping();
-        Status = ServiceStatus.Stopped;
         OnStopped();
     }
 
@@ -64,20 +57,32 @@ public abstract partial class Integrated : Project
     /// <summary>
     ///     Called to start the service.
     /// </summary>
-    protected abstract void OnStarting();
+    protected virtual void OnStarting()
+    {
+        Status = ServiceStatus.Starting;
+    }
 
     /// <summary>
     ///     Called when the service is started.
     /// </summary>
-    protected abstract void OnStarted();
+    protected virtual void OnStarted()
+    {
+        Status = ServiceStatus.Running;
+    };
 
     /// <summary>
     ///     Called to stop the service.
     /// </summary>
-    protected abstract void OnStopping();
+    protected virtual void OnStopping()
+    {
+        Status = ServiceStatus.Stopping;
+    }
 
     /// <summary>
     ///     Called when the service is stopped.
     /// </summary>
-    protected abstract void OnStopped();
+    protected virtual void OnStopped()
+    {
+        Status = ServiceStatus.Stopped;
+    }
 }
