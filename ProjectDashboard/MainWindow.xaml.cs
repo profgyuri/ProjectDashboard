@@ -14,12 +14,14 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         taskbarIcon.Icon = new System.Drawing.Icon("dashboard.ico");
-
-        var vm = DataContext as MainWindowViewModel;
-        var integrateds = vm.Integrated;
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
     {
         Visibility = Visibility.Collapsed;
         taskbarIcon.Visibility = Visibility.Visible;

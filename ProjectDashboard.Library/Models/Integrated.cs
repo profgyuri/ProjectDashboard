@@ -21,7 +21,8 @@ using CommunityToolkit.Mvvm.Input;
 /// </example>
 public abstract partial class Integrated : Project
 {
-    public ServiceStatus Status { get; set; }
+    public ServiceStatus Status { get; set; } = ServiceStatus.Stopped;
+    public bool IsStarted { get; set; }
 
     [ICommand]
     public void Start()
@@ -68,7 +69,8 @@ public abstract partial class Integrated : Project
     protected virtual void OnStarted()
     {
         Status = ServiceStatus.Running;
-    };
+        IsStarted = true;
+    }
 
     /// <summary>
     ///     Called to stop the service.
@@ -84,5 +86,6 @@ public abstract partial class Integrated : Project
     protected virtual void OnStopped()
     {
         Status = ServiceStatus.Stopped;
+        IsStarted = false;
     }
 }

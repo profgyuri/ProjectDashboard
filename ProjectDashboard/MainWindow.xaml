@@ -74,9 +74,10 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Text="Dashboard"
+                    Margin="15 0 0 0"
                     FontSize="24"
                     FontWeight="DemiBold"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Center"/>
                 <Button
                     WindowChrome.IsHitTestVisibleInChrome="True"
@@ -88,6 +89,19 @@
                     Foreground="{StaticResource TenBrush}"
                     BorderBrush="{StaticResource TenBrush}"
                     Click="CloseButton_Click"/>
+                <Button
+                    x:Name="MinimizeButton"
+                    WindowChrome.IsHitTestVisibleInChrome="True"
+                    Background="Transparent"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0 0 60 0"
+                    materialDesign:RippleAssist.IsDisabled="True"
+                    Content="{materialDesign:PackIcon Kind=WindowMinimize, Size=16}"
+                    VerticalContentAlignment="Bottom"
+                    Foreground="{StaticResource TenBrush}"
+                    BorderBrush="{StaticResource TenBrush}"
+                    Click="MinimizeButton_Click"/>
 
             </Grid>
 
@@ -276,22 +290,7 @@
                                             Checked="ToggleButton_Checked"
                                             Unchecked="ToggleButton_Unchecked"
                                             Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                                            IsChecked="True" />
-                                        <Menu
-                                                Grid.Column="2"
-                                                materialDesign:RippleAssist.IsDisabled="True"
-                                                Foreground="{StaticResource TenBrush}">
-                                            <MenuItem
-                                                Header="Open...">
-                                                <MenuItem
-                                                    Header="With Visual Studio"
-                                                    Command="{Binding OpenInVSCommand}"/>
-                                                <MenuItem
-                                                    Header="With Rider"
-                                                    Command="{Binding OpenInRiderCommand}"/>
-                                            </MenuItem>
-                                        </Menu>
-
+                                            IsChecked="{Binding IsStarted, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

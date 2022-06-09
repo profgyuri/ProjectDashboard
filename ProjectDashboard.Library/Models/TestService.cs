@@ -4,6 +4,7 @@ public class TestService : Integrated
 {
     public TestService()
     {
+        ProjectName = GetType().Name;
     }
 
     public TestService(string name)

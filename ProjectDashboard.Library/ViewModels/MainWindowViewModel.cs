@@ -73,11 +73,14 @@ public partial class MainWindowViewModel : ObservableObject
     {
         var projects = await SettingsManager.GetIntegratedProjectsAsync();
 
-        Integrated.Clear();
-
         foreach (var project in projects)
         {
-            Integrated.Add(project);
+            var i = Integrated.IndexOf(project);
+            
+            if (project.Status is ServiceStatus.Running or ServiceStatus.Starting)
+            {
+                Integrated[i].Start();
+            }
         }
     }
 
