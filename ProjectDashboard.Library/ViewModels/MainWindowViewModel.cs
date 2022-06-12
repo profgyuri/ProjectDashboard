@@ -4,11 +4,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectDashboard.Library.Data;
 using ProjectDashboard.Library.Models;
+using ProjectDashboard.Library.Services;
 
 public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty] private ObservableCollection<Standalone> _standalones;
-    [ObservableProperty] private ObservableCollection<Integrated> _integrated;
+    [ObservableProperty] private ObservableCollection<IService> _integrated;
     private bool _startsWithWindows;
 
     public bool StartsWithWindows 
@@ -28,7 +29,10 @@ public partial class MainWindowViewModel : ObservableObject
     public MainWindowViewModel()
     {
         _standalones = new ObservableCollection<Standalone>();
-        _integrated = new ObservableCollection<Integrated>();
+        _integrated = new ObservableCollection<IService>
+        {
+            new AudioFileWatcher(),
+        };
         _startsWithWindows = RegistryHelper.StartsWithWindows();
 
         LoadStandalones().ConfigureAwait(false);

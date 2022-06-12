@@ -261,7 +261,7 @@
                                 Background="{StaticResource ThirtyBrush}"
                                 Margin="0">
                                 <TextBlock
-                                    Text="Integrated"
+                                    Text="Services"
                                     Margin="10 5 10 10"
                                     FontWeight="DemiBold"
                                     Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}"/>
@@ -282,7 +282,7 @@
                                         <TextBlock
                                             Grid.Column="0"
                                             TextTrimming="CharacterEllipsis"
-                                            Text="{Binding ProjectName}"/>
+                                            Text="{Binding Name}"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
