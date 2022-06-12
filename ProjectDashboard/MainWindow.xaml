@@ -283,14 +283,6 @@
                                             Grid.Column="0"
                                             TextTrimming="CharacterEllipsis"
                                             Text="{Binding ProjectName}"/>
-                                        <ToggleButton
-                                            Grid.Column="1"
-                                            Margin="10 0"
-                                            Tag="{Binding}"
-                                            Checked="ToggleButton_Checked"
-                                            Unchecked="ToggleButton_Unchecked"
-                                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                                            IsChecked="{Binding IsStarted, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

@@ -73,22 +73,6 @@ public partial class MainWindow : Window
         Close();
     }
 
-    private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-    {
-        var vm = DataContext as MainWindowViewModel;
-        var asToggleButton = sender as ToggleButton;
-        var project = asToggleButton!.Tag as Library.Models.Integrated;
-        vm!.StartIntegrated(project!).ConfigureAwait(false);
-    }
-
-    private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-    {
-        var vm = DataContext as MainWindowViewModel;
-        var asToggleButton = sender as ToggleButton;
-        var project = asToggleButton!.Tag as Library.Models.Integrated;
-        vm!.StopIntegratedAsync(project!).ConfigureAwait(false);
-    }
-
     private void StartWithWindowsMenuItem_OnChecked(object sender, RoutedEventArgs e)
     {
         var vm = DataContext as MainWindowViewModel;

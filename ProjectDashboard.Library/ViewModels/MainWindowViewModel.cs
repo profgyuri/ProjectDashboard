@@ -31,30 +31,7 @@ public partial class MainWindowViewModel : ObservableObject
         _integrated = new ObservableCollection<Integrated>();
         _startsWithWindows = RegistryHelper.StartsWithWindows();
 
-        // _integrated.Add(new TestService("Integrated 1"));
-
         LoadStandalones().ConfigureAwait(false);
-        LoadIntegratedProjects().ConfigureAwait(false);
-    }
-
-    public async Task StartIntegrated(Integrated integrated)
-    {
-        var index = Integrated.IndexOf(integrated);
-
-        Integrated[index].Start();
-        OnPropertyChanged(nameof(Integrated));
-
-        await SettingsManager.SaveIntegratedProjectsAsync(Integrated);
-    }
-
-    public async Task StopIntegratedAsync(Integrated integrated)
-    {
-        var index = Integrated.IndexOf(integrated);
-
-        Integrated[index].Stop();
-        OnPropertyChanged(nameof(Integrated));
-
-        await SettingsManager.SaveIntegratedProjectsAsync(Integrated);
     }
 
     private async Task LoadStandalones()
@@ -66,21 +43,6 @@ public partial class MainWindowViewModel : ObservableObject
         foreach (var project in projects)
         {
             Standalones.Add(project);
-        }
-    }
-
-    private async Task LoadIntegratedProjects()
-    {
-        var projects = await SettingsManager.GetIntegratedProjectsAsync();
-
-        foreach (var project in projects)
-        {
-            var i = Integrated.IndexOf(project);
-            
-            if (project.Status is ServiceStatus.Running or ServiceStatus.Starting)
-            {
-                Integrated[i].Start();
-            }
         }
     }
 
