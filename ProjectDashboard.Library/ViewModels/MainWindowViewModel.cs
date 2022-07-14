@@ -65,7 +65,7 @@ public partial class MainWindowViewModel : ObservableObject
         if (Standalones.Any(x => x.Equals(standalone)))
         {
             Standalones.Remove(standalone);
-            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
+            await SettingsManager.RemoveProjectAsync(standalone);
         }
     }
 

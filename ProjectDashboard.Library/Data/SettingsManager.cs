@@ -2,6 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using ProjectDashboard.Library.Models;
+using System;
 
 /// <summary>
 ///     Class used to handle application resources.
@@ -29,6 +30,13 @@ public static class SettingsManager
     {
         await _dbContext.Database.EnsureCreatedAsync();
         _dbContext.UpdateRange(projects);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    internal static async Task RemoveProjectAsync(Standalone standalone)
+    {
+        await _dbContext.Database.EnsureCreatedAsync();
+        _dbContext.Remove(standalone);
         await _dbContext.SaveChangesAsync();
     }
 }
