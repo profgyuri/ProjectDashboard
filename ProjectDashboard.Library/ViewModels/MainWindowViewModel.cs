@@ -42,15 +42,10 @@ public partial class MainWindowViewModel : ObservableObject
     {
         var projects = await SettingsManager.GetStandalonesAsync();
 
-        Standalones.Clear();
-
-        foreach (var project in projects)
-        {
-            Standalones.Add(project);
-        }
+        Standalones = new(projects);
     }
 
-    [ICommand]
+    [RelayCommand]
     public async Task AddStandalone(Standalone standalone)
     {
         if (standalone is null)
@@ -81,7 +76,7 @@ public partial class MainWindowViewModel : ObservableObject
             return;
         }
 
-        if (Standalones.Any(x => x.Equals(old)))
+        if (Standalones.Contains(old))
         {
             var oldIndex = Standalones.IndexOf(old);
             Standalones[oldIndex] = edited;

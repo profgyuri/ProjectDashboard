@@ -30,19 +30,19 @@ public partial class Standalone : Project
     {
     }
 
-    [ICommand]
+    [RelayCommand]
     public void OpenPublished()
     {
         OpenExe(PublishPath);
     }
 
-    [ICommand]
+    [RelayCommand]
     public void OpenDebug()
     {
         OpenExe(DebugPath);
     }
 
-    [ICommand]
+    [RelayCommand]
     public void OpenRelease()
     {
         OpenExe(ReleasePath);
@@ -97,13 +97,13 @@ public partial class Standalone : Project
     [DataMember]
     public string SolutionPath { get; set; }
 
-    [ICommand]
+    [RelayCommand]
     public void OpenInVS()
     {
         OpenSolution("devenv.exe");
     }
 
-    [ICommand]
+    [RelayCommand]
     public void OpenInRider()
     {
         OpenSolution(RegistryHelper.GetRiderPath());
