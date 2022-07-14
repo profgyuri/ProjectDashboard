@@ -25,10 +25,10 @@ public static class SettingsManager
     ///     Saves the list of standalone projects.
     /// </summary>
     /// <param name="projects">The list of projects to save.</param>
-    public static void SaveStandaloneProjects(IEnumerable<Standalone> projects)
+    public static async Task SaveStandaloneProjectsAsync(IEnumerable<Standalone> projects)
     {
-        _dbContext.Database.EnsureCreated();
+        await _dbContext.Database.EnsureCreatedAsync();
         _dbContext.UpdateRange(projects);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
 }

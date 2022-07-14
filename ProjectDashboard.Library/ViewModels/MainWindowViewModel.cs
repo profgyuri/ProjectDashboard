@@ -46,7 +46,7 @@ public partial class MainWindowViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void AddStandalone(Standalone standalone)
+    public async Task AddStandalone(Standalone standalone)
     {
         if (standalone is null)
         {
@@ -56,20 +56,20 @@ public partial class MainWindowViewModel : ObservableObject
         if (!Standalones.Contains(standalone))
         {
             Standalones.Add(standalone);
-            SettingsManager.SaveStandaloneProjects(Standalones);
+            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
         }
     }
 
-    public void RemoveStandalone(Standalone standalone)
+    public async Task RemoveStandalone(Standalone standalone)
     {
         if (Standalones.Any(x => x.Equals(standalone)))
         {
             Standalones.Remove(standalone);
-            SettingsManager.SaveStandaloneProjects(Standalones);
+            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
         }
     }
 
-    public void EditStandalone(Standalone old, Standalone edited)
+    public async Task EditStandalone(Standalone old, Standalone edited)
     {
         if (old is null || edited is null)
         {
@@ -80,7 +80,7 @@ public partial class MainWindowViewModel : ObservableObject
         {
             var oldIndex = Standalones.IndexOf(old);
             Standalones[oldIndex] = edited;
-            SettingsManager.SaveStandaloneProjects(Standalones);
+            await SettingsManager.SaveStandaloneProjectsAsync(Standalones);
         }
     }
 }
