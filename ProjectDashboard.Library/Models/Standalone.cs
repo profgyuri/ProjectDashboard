@@ -1,25 +1,29 @@
 ﻿namespace ProjectDashboard.Library.Models;
 using CommunityToolkit.Mvvm.Input;
 using ProjectDashboard.Library.Data;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
 public partial class Standalone : Project
 {
+    [Key]
+    public int Id { get; set; }
+
     /// <summary>
     ///     Path to the published build.
     /// </summary>
-    public string PublishPath { get; set; }
+    public string PublishPath { get; set; } = string.Empty;
 
     /// <summary>
     ///     Path to the debug build.
     /// </summary>
-    public string DebugPath { get; set; }
+    public string DebugPath { get; set; } = string.Empty;
 
     /// <summary>
     ///     Path to the release build.
     /// </summary>
-    public string ReleasePath { get; set; }
+    public string ReleasePath { get; set; } = string.Empty;
 
     public Standalone(string name)
     {
@@ -95,7 +99,7 @@ public partial class Standalone : Project
     ///     Path to the solution file.
     /// </summary>
     [DataMember]
-    public string SolutionPath { get; set; }
+    public string SolutionPath { get; set; } = string.Empty;
 
     [RelayCommand]
     public void OpenInVS()

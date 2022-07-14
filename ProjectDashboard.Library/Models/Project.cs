@@ -11,5 +11,5 @@ public abstract partial class Project
     ///     Name of the project.
     /// </summary>
     [DataMember]
-    public string ProjectName { get; set; }
+    public string ProjectName { get; set; } = String.Empty;
 }

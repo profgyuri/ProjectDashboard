@@ -33,7 +33,7 @@ public partial class MainWindow : Window
 
         if (window.ShowDialog() == true)
         {
-            (DataContext as MainWindowViewModel)!.AddStandalone(window.Result).ConfigureAwait(false);
+            (DataContext as MainWindowViewModel)!.AddStandalone(window.Result);
         }
     }
 
@@ -42,7 +42,7 @@ public partial class MainWindow : Window
         var menuItem = sender as MenuItem;
         var entityToRemove = menuItem!.Tag as Library.Models.Standalone;
         var vm = DataContext as MainWindowViewModel;
-        vm!.RemoveStandalone(entityToRemove!).ConfigureAwait(false);
+        vm!.RemoveStandalone(entityToRemove!);
     }
 
     private void EditItem_Click(object sender, RoutedEventArgs e)
@@ -54,7 +54,7 @@ public partial class MainWindow : Window
         var window = new SettingsWindow(entityToEdit, this);
         if (window.ShowDialog() == true)
         {
-            vm!.EditStandalone(entityToEdit, window.Result).ConfigureAwait(false);
+            vm!.EditStandalone(entityToEdit, window.Result);
         }
         else
         {

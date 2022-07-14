@@ -1,14 +1,14 @@
 ﻿namespace ProjectDashboard.Library.Data;
-using Newtonsoft.Json;
+
+using Microsoft.EntityFrameworkCore;
 using ProjectDashboard.Library.Models;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 /// <summary>
 ///     Class used to handle application resources.
 /// </summary>
 public static class SettingsManager
 {
-    private const string _jsonForStandalones = "standalones.json";
+    private static readonly DatabaseContext _dbContext = new();
 
     /// <summary>
     ///     Gets the standalone projects from the json file.
@@ -16,19 +16,19 @@ public static class SettingsManager
     /// <returns>List of <see cref="Standalone" /> objects.</returns>
     public static async Task<IEnumerable<Standalone>> GetStandalonesAsync()
     {
-        var text = await File.ReadAllTextAsync(_jsonForStandalones);
-        var result = JsonConvert.DeserializeObject<IEnumerable<Standalone>>(text);
+        _dbContext.Database.EnsureCreated();
 
-        return result ?? new List<Standalone>();
+        return await _dbContext.Standalones.ToListAsync();
     }
 
     /// <summary>
     ///     Saves the list of standalone projects.
     /// </summary>
     /// <param name="projects">The list of projects to save.</param>
-    public static async Task SaveStandaloneProjectsAsync(IEnumerable<Standalone> projects)
+    public static void SaveStandaloneProjects(IEnumerable<Standalone> projects)
     {
-        await using var stream = File.Create(_jsonForStandalones);
-        await JsonSerializer.SerializeAsync(stream, projects, projects.GetType());
+        _dbContext.Database.EnsureCreated();
+        _dbContext.UpdateRange(projects);
+        _dbContext.SaveChanges();
     }
 }
