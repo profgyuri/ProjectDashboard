@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\rider.ico" />
+    <None Remove="Icons\visualStudio.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectDashboard.Lib\ProjectDashboard.Lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\rider.ico" />
+    <Resource Include="Icons\visualStudio.png" />
+  </ItemGroup>
+
+</Project>
