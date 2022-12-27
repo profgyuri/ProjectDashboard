@@ -21,7 +21,7 @@ using System.Windows.Shapes;
 /// </summary>
 public sealed partial class MainWindow : Window
 {
-    internal MainWindow(MainWindowViewModel viewModel)
+    public MainWindow(MainWindowViewModel viewModel)
     {
         InitializeComponent();
 
