@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 [INotifyPropertyChanged]
 public partial class MainWindowViewModel
 {
-    [ObservableProperty] private ObservableCollection<string> projectNames;
+    [ObservableProperty] private ObservableCollection<string> _projectNames;
 
 	public MainWindowViewModel()
 	{
-		projectNames = new()
+		_projectNames = new()
 		{
 			"Multitasking",
 			"Music Listening",

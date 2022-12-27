@@ -1,15 +1,27 @@
-﻿namespace ProjectDashboard.WPF;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Autofac;
+using ProjectDashboard.WPF.Dependency;
+
+namespace ProjectDashboard.WPF;
+
 using System.Windows;
 
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public partial class App : Application
+internal sealed partial class App : Application
 {
+    #region Overrides of Application
+    /// <inheritdoc />
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        
+        using var scope = AutofacContainer.Container.BeginLifetimeScope();
+        var window = scope.Resolve<MainWindow>();
+        
+        window.Show();
+        
+        ShutdownMode = ShutdownMode.OnMainWindowClose;
+    }
+    #endregion
 }

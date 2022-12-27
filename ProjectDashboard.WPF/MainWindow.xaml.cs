@@ -1,4 +1,6 @@
-﻿namespace ProjectDashboard.WPF;
+﻿using ProjectDashboard.Lib.ViewModels;
+
+namespace ProjectDashboard.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +19,14 @@ using System.Windows.Shapes;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public sealed partial class MainWindow : Window
 {
-    public MainWindow()
+    internal MainWindow(MainWindowViewModel viewModel)
     {
         InitializeComponent();
 
         LayoutContentControl.Content = new Layouts.Layout1();
+        
+        DataContext = viewModel;
     }
 }
