@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectDashboard.WPF"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:ProjectDashboard.Lib.ViewModels;assembly=ProjectDashboard.Lib"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Dashboard"
         WindowStartupLocation="CenterScreen"
@@ -16,12 +16,8 @@
         AllowsTransparency="True"
         Height="555" Width="405">
 
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
-
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="42"/>
+        <WindowChrome CaptionHeight="42" />
     </WindowChrome.WindowChrome>
 
     <Border
@@ -31,8 +27,8 @@
         Padding="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <!-- Title bar -->
@@ -47,7 +43,7 @@
                     FontSize="24"
                     FontWeight="DemiBold"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center" />
                 <Button
                     WindowChrome.IsHitTestVisibleInChrome="True"
                     Background="Transparent"
@@ -56,7 +52,7 @@
                     materialDesign:RippleAssist.IsDisabled="True"
                     Content="{materialDesign:PackIcon Kind=Close, Size=16}"
                     Foreground="{StaticResource InteractiveBrush}"
-                    BorderBrush="{StaticResource InteractiveBrush}"/>
+                    BorderBrush="{StaticResource InteractiveBrush}" />
                 <Button
                     x:Name="MinimizeButton"
                     WindowChrome.IsHitTestVisibleInChrome="True"
@@ -68,7 +64,7 @@
                     Content="{materialDesign:PackIcon Kind=WindowMinimize, Size=16}"
                     VerticalContentAlignment="Bottom"
                     Foreground="{StaticResource InteractiveBrush}"
-                    BorderBrush="{StaticResource InteractiveBrush}"/>
+                    BorderBrush="{StaticResource InteractiveBrush}" />
 
             </Grid>
 
@@ -76,14 +72,14 @@
             <Grid
                 Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <!-- todo: you can change the layout by setting the Control property to 1 of the UserControls-->
                 <ContentControl
-                    x:Name="LayoutContentControl"/>
+                    x:Name="LayoutContentControl" />
 
             </Grid>
 

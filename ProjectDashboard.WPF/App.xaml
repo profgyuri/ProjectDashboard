@@ -1,7 +1,6 @@
 ﻿<Application x:Class="ProjectDashboard.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ProjectDashboard.WPF"
              xmlns:res="clr-namespace:ProjectDashboard.WPF.Resources"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              x:ClassModifier="internal">
@@ -18,31 +17,31 @@
             <Color x:Key="VisualStudioClick">#454545</Color>
             <Color x:Key="RiderHover">#3a3a3a</Color>
             <Color x:Key="RiderClick">#3a3a3a</Color>
-            <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource BackgroundColor}"/>
-            <SolidColorBrush x:Key="StaticBrush" Color="{DynamicResource StaticColor}"/>
-            <SolidColorBrush x:Key="InteractiveBrush" Color="{DynamicResource InteractiveColor}"/>
-            <SolidColorBrush x:Key="VisualStudioHoverBrush" Color="{StaticResource VisualStudioHover}"/>
-            <SolidColorBrush x:Key="VisualStudioClickBrush" Color="{StaticResource VisualStudioClick}"/>
-            <SolidColorBrush x:Key="RiderHoverBrush" Color="{StaticResource RiderHover}"/>
-            <SolidColorBrush x:Key="RiderClickBrush" Color="{StaticResource RiderClick}"/>
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource BackgroundColor}" />
+            <SolidColorBrush x:Key="StaticBrush" Color="{DynamicResource StaticColor}" />
+            <SolidColorBrush x:Key="InteractiveBrush" Color="{DynamicResource InteractiveColor}" />
+            <SolidColorBrush x:Key="VisualStudioHoverBrush" Color="{StaticResource VisualStudioHover}" />
+            <SolidColorBrush x:Key="VisualStudioClickBrush" Color="{StaticResource VisualStudioClick}" />
+            <SolidColorBrush x:Key="RiderHoverBrush" Color="{StaticResource RiderHover}" />
+            <SolidColorBrush x:Key="RiderClickBrush" Color="{StaticResource RiderClick}" />
             <Style TargetType="res:CorneredButton" BasedOn="{StaticResource {x:Type Button}}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="res:CorneredButton">
-                            <Border 
+                            <Border
                                 x:Name="border"
-                                CornerRadius="{TemplateBinding BorderRadius}" 
-                                Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="{TemplateBinding BorderRadius}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 Padding="{TemplateBinding Padding}">
-                                <ContentPresenter 
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    RecognizesAccessKey="True" 
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                    Content="{TemplateBinding Content}" 
-                                    ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
                                     ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </Border>
                             <ControlTemplate.Triggers>

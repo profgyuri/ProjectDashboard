@@ -4,16 +4,17 @@ using System.Windows.Media;
 
 namespace ProjectDashboard.WPF.Resources;
 
-public sealed class CorneredButton : Button
+internal sealed class CorneredButton : Button
 {
     #region Border Radius Property
     public static readonly DependencyProperty BorderRadiusProperty =
-        DependencyProperty.Register("BorderRadius", typeof(CornerRadius), typeof(CorneredButton), new PropertyMetadata(default(CornerRadius)));
+        DependencyProperty.Register("BorderRadius", typeof(CornerRadius), typeof(CorneredButton),
+            new PropertyMetadata(default(CornerRadius)));
 
     public CornerRadius BorderRadius
     {
-        get { return (CornerRadius)GetValue(BorderRadiusProperty); }
-        set { SetValue(BorderRadiusProperty, value); }
+        get => (CornerRadius) GetValue(BorderRadiusProperty);
+        set => SetValue(BorderRadiusProperty, value);
     }
     #endregion
 
@@ -27,8 +28,8 @@ public sealed class CorneredButton : Button
 
     public Brush MouseOverBackground
     {
-        get { return (Brush)GetValue(MouseOverBackgroundProperty); }
-        set { SetValue(MouseOverBackgroundProperty, value); }
+        get => (Brush) GetValue(MouseOverBackgroundProperty);
+        set => SetValue(MouseOverBackgroundProperty, value);
     }
     #endregion
 
@@ -42,8 +43,8 @@ public sealed class CorneredButton : Button
 
     public Brush PressedBackground
     {
-        get { return (Brush)GetValue(PressedBackgroundProperty); }
-        set { SetValue(PressedBackgroundProperty, value); }
+        get => (Brush) GetValue(PressedBackgroundProperty);
+        set => SetValue(PressedBackgroundProperty, value);
     }
     #endregion
 }
