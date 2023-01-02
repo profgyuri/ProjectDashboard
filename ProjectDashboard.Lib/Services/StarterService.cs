@@ -1,4 +1,5 @@
-﻿using ProjectDashboard.Lib.Repositories;
+﻿using System.Diagnostics;
+using ProjectDashboard.Lib.Repositories;
 
 namespace ProjectDashboard.Lib.Services;
 
@@ -17,16 +18,33 @@ public sealed class StarterService : IStarterService
         string name,
         Ide ide)
     {
-        var solution = await _solutionRepository.GetByNameAsync(name);
+        var solution = await _solutionRepository.GetByNameAsync(name)!;
         
         switch (ide)
         {
             case Ide.VisualStudio:
+                OpenSolution("devenv.exe");
                 break;
             case Ide.Rider:
+                OpenSolution("rider64.exe");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(ide), ide, null);
+        }
+        
+        void OpenSolution(string path)
+        {
+            if (!File.Exists(solution.SolutionPath) || !solution.SolutionPath.EndsWith(".sln"))
+            {
+                return;
+            }
+            
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = path,
+                Arguments = $"\"{solution.SolutionPath}\"",
+                UseShellExecute = true
+            });
         }
     }
 
@@ -35,16 +53,35 @@ public sealed class StarterService : IStarterService
         string name,
         ExecutionMode exe)
     {
+        var solution = await _solutionRepository.GetByNameAsync(name)!;
+        
         switch (exe)
         {
             case ExecutionMode.Debug:
+                RunExecutable(solution.DebugPath);
                 break;
             case ExecutionMode.Release:
+                RunExecutable(solution.ReleasePath);
                 break;
             case ExecutionMode.Published:
+                RunExecutable(solution.PublishedPath);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(exe), exe, null);
+        }
+        
+        void RunExecutable(string path)
+        {
+            if (!File.Exists(path) || !path.EndsWith(".exe"))
+            {
+                return;
+            }
+            
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = path,
+                UseShellExecute = true
+            });
         }
     }
     #endregion

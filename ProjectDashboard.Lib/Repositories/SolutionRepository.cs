@@ -63,7 +63,9 @@ public sealed class SolutionRepository : ISolutionRepository
         
         existingSolution.Name = solution.Name;
         existingSolution.SolutionPath = solution.SolutionPath;
-        existingSolution.ExePath = solution.ExePath;
+        existingSolution.DebugPath = solution.DebugPath;
+        existingSolution.ReleasePath = solution.ReleasePath;
+        existingSolution.PublishedPath = solution.PublishedPath;
         
         await _dataContext.SaveChangesAsync();
     }
