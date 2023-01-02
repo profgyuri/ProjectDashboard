@@ -4,35 +4,68 @@ namespace ProjectDashboard.Lib.Repositories;
 
 public sealed class SolutionRepository : ISolutionRepository
 {
+    private readonly DataContext _dataContext;
+
+    public SolutionRepository(DataContext dataContext)
+    {
+        _dataContext = dataContext;
+    }
+    
     #region Implementation of ISolutionRepository
     /// <inheritdoc />
-    public Solution GetById(Guid id)
+    public async Task<Solution> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var result = _dataContext.Solutions.FirstOrDefault(x => x.Id == id);
+
+        return result is not null ? await Task.FromResult(result) : throw new Exception($"Solution with id {id} not found");
     }
 
     /// <inheritdoc />
-    public Solution GetByName(string name)
+    public async Task<Solution> GetByNameAsync(string name)
     {
-        throw new NotImplementedException();
+        var result = _dataContext.Solutions.FirstOrDefault(x => x.Name == name);
+        
+        return result is not null ? await Task.FromResult(result) : throw new Exception($"Solution with name {name} not found");
     }
 
     /// <inheritdoc />
-    public void Save(Solution solution)
+    public async Task SaveAsync(Solution solution)
     {
-        throw new NotImplementedException();
+        // check if solution already exists
+        var existingSolution = _dataContext.Solutions.FirstOrDefault(x => x.Id == solution.Id);
+        
+        if (existingSolution == null)
+        {
+            _dataContext.Solutions.Add(solution);
+        }
+        else
+        {
+            await UpdateAsync(solution);
+        }
+        
+        await _dataContext.SaveChangesAsync();
     }
 
     /// <inheritdoc />
-    public void Delete(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var solution = await GetByIdAsync(id);
+        
+        _dataContext.Solutions.Remove(solution);
+        
+        await _dataContext.SaveChangesAsync();
     }
 
     /// <inheritdoc />
-    public void Update(Solution solution)
+    public async Task UpdateAsync(Solution solution)
     {
-        throw new NotImplementedException();
+        var existingSolution = await GetByIdAsync(solution.Id);
+        
+        existingSolution.Name = solution.Name;
+        existingSolution.SolutionPath = solution.SolutionPath;
+        existingSolution.ExePath = solution.ExePath;
+        
+        await _dataContext.SaveChangesAsync();
     }
     #endregion
 }

@@ -26,30 +26,30 @@ public partial class MainWindowViewModel
     [RelayCommand]
     private void SolutionInVS(string name)
     {
-        _starterService.OpenSolution(name, Ide.VisualStudio);
+        _starterService.OpenSolutionAsync(name, Ide.VisualStudio);
     }
     
     [RelayCommand]
     private void SolutionInRider(string name)
     {
-        _starterService.OpenSolution(name, Ide.Rider);
+        _starterService.OpenSolutionAsync(name, Ide.Rider);
     }
     
     [RelayCommand]
     private void RunDebug(string name)
     {
-        _starterService.RunExecutable(name, ExecutionMode.Debug);
+        _starterService.RunExecutableAsync(name, ExecutionMode.Debug);
     }
     
     [RelayCommand]
     private void RunRelease(string name)
     {
-        _starterService.RunExecutable(name, ExecutionMode.Release);
+        _starterService.RunExecutableAsync(name, ExecutionMode.Release);
     }
     
     [RelayCommand]
     private void RunPublished(string name)
     {
-        _starterService.RunExecutable(name, ExecutionMode.Published);
+        _starterService.RunExecutableAsync(name, ExecutionMode.Published);
     }
 }

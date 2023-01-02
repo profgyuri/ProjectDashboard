@@ -7,7 +7,7 @@ public interface IStarterService
     /// </summary>
     /// <param name="name">Name of the project to open.</param>
     /// <param name="ide">The IDE to open the project in.</param>
-    void OpenSolution(
+    Task OpenSolutionAsync(
         string name,
         Ide ide);
 
@@ -16,7 +16,7 @@ public interface IStarterService
     /// </summary>
     /// <param name="name">Name of the project of the executable to open.</param>
     /// <param name="exe">The type of executable to open.</param>
-    void RunExecutable(
+    Task RunExecutableAsync(
         string name,
         ExecutionMode exe);
 }

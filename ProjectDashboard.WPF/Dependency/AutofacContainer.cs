@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ProjectDashboard.Lib;
 using ProjectDashboard.WPF.Dependency.Modules;
 
 namespace ProjectDashboard.WPF.Dependency;
@@ -16,6 +17,8 @@ public static class AutofacContainer
                 var builder = new ContainerBuilder();
 
                 builder.RegisterAssemblyModules(typeof(AutofacContainer).Assembly);
+
+                builder.RegisterType<DataContext>().SingleInstance();
 
                 _container = builder.Build();
             }

@@ -13,11 +13,11 @@ public sealed class StarterService : IStarterService
     
     #region Implementation of IStarterService
     /// <inheritdoc />
-    public void OpenSolution(
+    public async Task OpenSolutionAsync(
         string name,
         Ide ide)
     {
-        var solution = _solutionRepository.GetByName(name);
+        var solution = await _solutionRepository.GetByNameAsync(name);
         
         switch (ide)
         {
@@ -31,7 +31,7 @@ public sealed class StarterService : IStarterService
     }
 
     /// <inheritdoc />
-    public void RunExecutable(
+    public async Task RunExecutableAsync(
         string name,
         ExecutionMode exe)
     {
