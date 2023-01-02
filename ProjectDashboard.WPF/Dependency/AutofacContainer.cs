@@ -15,8 +15,7 @@ public static class AutofacContainer
             {
                 var builder = new ContainerBuilder();
 
-                builder.RegisterModule<ViewsModule>();
-                builder.RegisterModule<ViewModelsModule>();
+                builder.RegisterAssemblyModules(typeof(AutofacContainer).Assembly);
 
                 _container = builder.Build();
             }

@@ -11,8 +11,6 @@ public partial class MainWindowViewModel
     private readonly IStarterService _starterService;
     
     [ObservableProperty] private ObservableCollection<string> _projectNames;
-    
-    
 
     public MainWindowViewModel(IStarterService starterService)
     {

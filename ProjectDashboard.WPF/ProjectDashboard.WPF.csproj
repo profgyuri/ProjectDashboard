@@ -8,22 +8,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Icons\rider.ico"/>
-        <None Remove="Icons\visualStudio.png"/>
+        <None Remove="Icons\rider.ico" />
+        <None Remove="Icons\visualStudio.png" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.5.0"/>
-        <PackageReference Include="MaterialDesignThemes" Version="4.6.1"/>
+        <PackageReference Include="Autofac" Version="6.5.0" />
+        <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ProjectDashboard.Lib\ProjectDashboard.Lib.csproj"/>
+        <ProjectReference Include="..\ProjectDashboard.Lib\ProjectDashboard.Lib.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Icons\rider.ico"/>
-        <Resource Include="Icons\visualStudio.png"/>
+        <Resource Include="Icons\rider.ico" />
+        <Resource Include="Icons\visualStudio.png" />
     </ItemGroup>
 
 </Project>
