@@ -29,21 +29,28 @@ public sealed class SolutionRepository : ISolutionRepository
     }
 
     /// <inheritdoc />
-    public async Task SaveAsync(Solution solution)
+    public async Task<Guid> SaveAsync(Solution solution)
     {
-        // check if solution already exists
-        var existingSolution = _dataContext.Solutions.FirstOrDefault(x => x.Id == solution.Id);
+        var result = Guid.Empty;
         
-        if (existingSolution == null)
+        // check if solution already exists
+        var existingSolution = 
+            _dataContext.Solutions.FirstOrDefault(x => x.Id == solution.Id);
+        
+        if (existingSolution is null)
         {
-            _dataContext.Solutions.Add(solution);
+            var added = _dataContext.Solutions.Add(solution);
+            result = added.Entity.Id;
         }
         else
         {
             await UpdateAsync(solution);
+            result = solution.Id;
         }
         
         await _dataContext.SaveChangesAsync();
+        
+        return result;
     }
 
     /// <inheritdoc />

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using Autofac;
+using Microsoft.EntityFrameworkCore;
+using ProjectDashboard.Lib;
 using ProjectDashboard.WPF.Dependency;
 
 namespace ProjectDashboard.WPF;
@@ -16,8 +18,11 @@ internal sealed partial class App : Application
         base.OnStartup(e);
 
         using var scope = AutofacContainer.Container.BeginLifetimeScope();
+        
+        var dataContext = scope.Resolve<DataContext>();
+        dataContext.Database.Migrate();
+        
         var window = scope.Resolve<MainWindow>();
-
         window.Show();
 
         ShutdownMode = ShutdownMode.OnMainWindowClose;

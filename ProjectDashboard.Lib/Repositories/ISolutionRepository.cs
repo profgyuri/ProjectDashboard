@@ -22,7 +22,8 @@ public interface ISolutionRepository
     /// Saves the solution to the repository.
     /// </summary>
     /// <param name="solution">The solution to save.</param>
-    Task SaveAsync(Solution solution);
+    /// <returns>The id of the saved solution.</returns>
+    Task<Guid> SaveAsync(Solution solution);
     
     /// <summary>
     /// Deletes a solution from the repository.
