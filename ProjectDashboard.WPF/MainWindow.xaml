@@ -54,7 +54,7 @@
                     materialDesign:RippleAssist.IsDisabled="True"
                     Content="{materialDesign:PackIcon Kind=Close, Size=16}"
                     Foreground="{StaticResource InteractiveBrush}"
-                    BorderBrush="{StaticResource InteractiveBrush}" />
+                    BorderBrush="{StaticResource InteractiveBrush}"/>
                 <Button
                     x:Name="MinimizeButton"
                     Click="MinimizeButton_Click"
