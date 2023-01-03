@@ -45,6 +45,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" />
                 <Button
+                    x:Name="CloseButton"
+                    Click="CloseButton_Click"
                     WindowChrome.IsHitTestVisibleInChrome="True"
                     Background="Transparent"
                     HorizontalAlignment="Right"
@@ -55,6 +57,7 @@
                     BorderBrush="{StaticResource InteractiveBrush}" />
                 <Button
                     x:Name="MinimizeButton"
+                    Click="MinimizeButton_Click"
                     WindowChrome.IsHitTestVisibleInChrome="True"
                     Background="Transparent"
                     HorizontalAlignment="Right"

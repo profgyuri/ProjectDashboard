@@ -17,4 +17,14 @@ public sealed partial class MainWindow : Window
 
         DataContext = viewModel;
     }
+
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
+    }
+
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
 }
