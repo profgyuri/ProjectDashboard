@@ -22,7 +22,7 @@
                     BorderBrush="{DynamicResource StaticBrush}"
                     BorderThickness="2"
                     CornerRadius="10"
-                    Width="170"
+                    Width="220"
                     Margin="10 0 10 20">
                     <Grid
                         ClipToBounds="True">
@@ -34,17 +34,18 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
                             x:Name="ProjectName"
                             Text="{Binding}"
-                            Grid.ColumnSpan="3"
+                            Grid.ColumnSpan="4"
                             TextTrimming="WordEllipsis"
                             TextWrapping="Wrap"
                             FontSize="18"
                             MaxHeight="68"
-                            Padding="5"
+                            Margin="10"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center" />
                         <res:CorneredButton
@@ -79,6 +80,14 @@
                             Foreground="GreenYellow"
                             Padding="0"
                             BorderThickness="0 2 0 0"
+                            BorderBrush="{DynamicResource StaticBrush}"/>
+                        <res:CorneredButton
+                            Grid.Row="1"
+                            Grid.Column="3"
+                            Content="{materialDesign:PackIcon Kind=Edit, Size=22}"
+                            Foreground="GreenYellow"
+                            Padding="0"
+                            BorderThickness="2 2 0 0"
                             BorderBrush="{DynamicResource StaticBrush}"
                             BorderRadius="0 0 9 0" />
 

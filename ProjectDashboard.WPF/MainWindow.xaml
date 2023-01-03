@@ -14,7 +14,7 @@
         Background="{StaticResource BackgroundBrush}"
         Foreground="{StaticResource StaticBrush}"
         AllowsTransparency="True"
-        Height="555" Width="405">
+        Height="555" Width="505">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="42" />
@@ -42,8 +42,8 @@
                     Margin="15 0 0 0"
                     FontSize="24"
                     FontWeight="DemiBold"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center" />
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" />
                 <Button
                     x:Name="CloseButton"
                     Click="CloseButton_Click"
