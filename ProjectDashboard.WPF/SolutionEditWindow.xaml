@@ -13,7 +13,7 @@
         Foreground="{StaticResource StaticBrush}"
         AllowsTransparency="True"
         Title="SolutionEditWindow"
-        Height="120"
+        Height="110"
         Width="300">
     <Border
         CornerRadius="8"
@@ -71,35 +71,13 @@
                 Grid.Column="1"
                 Orientation="Horizontal">
                 <resources:CorneredButton
-                    HorizontalAlignment="Right"
-                    Height="25"
-                    Width="75"
-                    Padding="5 2"
-                    Margin="5 0"
-                    BorderRadius="2"
-                    BorderThickness="1"
-                    Foreground="{StaticResource InteractiveBrush}"
-                    BorderBrush="{StaticResource InteractiveBrush}"
-                    MouseOverBackground="{StaticResource VisualStudioHoverBrush}"
-                    materialDesign:RippleAssist.IsDisabled="True"
-                    Content="Save"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"/>
+                    Style="{StaticResource InteractionButton}"
+                    Margin="8 0 4 0"
+                    Content="Save"/>
                 <resources:CorneredButton
-                    HorizontalAlignment="Right"
-                    Height="25"
-                    Width="75"
-                    Padding="5 2"
-                    Margin="5 0"
-                    BorderRadius="2"
-                    BorderThickness="1"
-                    Foreground="{StaticResource InteractiveBrush}"
-                    BorderBrush="{StaticResource InteractiveBrush}"
-                    MouseOverBackground="{StaticResource VisualStudioHoverBrush}"
-                    materialDesign:RippleAssist.IsDisabled="True"
-                    Content="Cancel"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"/>
+                    Style="{StaticResource InteractionButton}"
+                    Margin="4 0 8 0"
+                    Content="Cancel"/>
             </StackPanel>
 
         </Grid>
