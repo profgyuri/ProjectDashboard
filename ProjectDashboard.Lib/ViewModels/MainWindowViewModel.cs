@@ -36,20 +36,8 @@ public partial class MainWindowViewModel
     }
     
     [RelayCommand]
-    private void RunDebug(string name)
+    private void RunExe(string name)
     {
         _starterService.RunExecutableAsync(name, ExecutionMode.Debug).ConfigureAwait(false);
-    }
-    
-    [RelayCommand]
-    private void RunRelease(string name)
-    {
-        _starterService.RunExecutableAsync(name, ExecutionMode.Release).ConfigureAwait(false);
-    }
-    
-    [RelayCommand]
-    private void RunPublished(string name)
-    {
-        _starterService.RunExecutableAsync(name, ExecutionMode.Published).ConfigureAwait(false);
     }
 }

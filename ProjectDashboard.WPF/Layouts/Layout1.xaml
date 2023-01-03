@@ -4,14 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:res="clr-namespace:ProjectDashboard.WPF.Resources"
-             xmlns:vm="clr-namespace:ProjectDashboard.Lib.ViewModels;assembly=ProjectDashboard.Lib"
-             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:ProjectDashboard.Lib.ViewModels;assembly=ProjectDashboard.Lib"             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
              Foreground="{DynamicResource StaticBrush}"
              d:DesignHeight="480" d:DesignWidth="380">
-
-    <UserControl.DataContext>
-        <vm:MainWindowViewModel />
-    </UserControl.DataContext>
 
     <ItemsControl ItemsSource="{Binding ProjectNames}">
         <ItemsControl.ItemsPanel>
@@ -76,6 +73,11 @@
                         <res:CorneredButton
                             Grid.Row="1"
                             Grid.Column="2"
+                            Command="{Binding DataContext.RunExeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            CommandParameter="{Binding}"
+                            Content="{materialDesign:PackIcon Kind=Play, Size=30}"
+                            Foreground="GreenYellow"
+                            Padding="0"
                             BorderThickness="0 2 0 0"
                             BorderBrush="{DynamicResource StaticBrush}"
                             BorderRadius="0 0 9 0" />

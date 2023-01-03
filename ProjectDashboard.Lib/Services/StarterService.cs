@@ -54,35 +54,18 @@ public sealed class StarterService : IStarterService
         ExecutionMode exe)
     {
         var solution = await _solutionRepository.GetByNameAsync(name)!;
+        var path = solution.ExePath;
         
-        switch (exe)
+        if (!File.Exists(path) || !path.EndsWith(".exe"))
         {
-            case ExecutionMode.Debug:
-                RunExecutable(solution.DebugPath);
-                break;
-            case ExecutionMode.Release:
-                RunExecutable(solution.ReleasePath);
-                break;
-            case ExecutionMode.Published:
-                RunExecutable(solution.PublishedPath);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(exe), exe, null);
+            return;
         }
-        
-        void RunExecutable(string path)
-        {
-            if (!File.Exists(path) || !path.EndsWith(".exe"))
-            {
-                return;
-            }
             
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = path,
-                UseShellExecute = true
-            });
-        }
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = path,
+            UseShellExecute = true
+        });
     }
     #endregion
 }
