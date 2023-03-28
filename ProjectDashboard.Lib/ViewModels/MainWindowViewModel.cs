@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectDashboard.Lib.Models;
+using ProjectDashboard.Lib.Repositories;
 using ProjectDashboard.Lib.Services;
 
 namespace ProjectDashboard.Lib.ViewModels;
@@ -9,35 +11,38 @@ namespace ProjectDashboard.Lib.ViewModels;
 public partial class MainWindowViewModel
 {
     private readonly IStarterService _starterService;
-    
-    [ObservableProperty] private ObservableCollection<string> _projectNames;
+    private readonly ISolutionRepository _solutionRepository;
 
-    public MainWindowViewModel(IStarterService starterService)
+    [ObservableProperty] private ObservableCollection<Solution> _solutions;
+
+    public MainWindowViewModel(IStarterService starterService, ISolutionRepository solutionRepository)
     {
         _starterService = starterService;
-        _projectNames = new()
+        _solutionRepository = solutionRepository;
+
+        _solutions = new()
         {
-            "Multitasking",
-            "Music Listening",
-            "Something, that is hopefully too long for 2 lines, so the text will be trimmed."
+            new Solution(){SolutionPath = "", Name = "First"},
+            new Solution(){SolutionPath = "", Name = "Second"},
+            new Solution() { SolutionPath = "", Name = "Third" }
         };
     }
 
     [RelayCommand]
-    private void SolutionInVS(string name)
+    private void SolutionInVS(Solution solution)
     {
-        _starterService.OpenSolutionAsync(name, Ide.VisualStudio).ConfigureAwait(false);
+        _starterService.OpenSolution(solution, Ide.VisualStudio);
     }
     
     [RelayCommand]
-    private void SolutionInRider(string name)
+    private void SolutionInRider(Solution solution)
     {
-        _starterService.OpenSolutionAsync(name, Ide.Rider).ConfigureAwait(false);
+        _starterService.OpenSolution(solution, Ide.Rider);
     }
     
     [RelayCommand]
-    private void RunExe(string name)
+    private void RunExe(Solution solution)
     {
-        _starterService.RunExecutableAsync(name, ExecutionMode.Debug).ConfigureAwait(false);
+        _starterService.RunExecutable(solution);
     }
 }

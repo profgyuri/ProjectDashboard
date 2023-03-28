@@ -10,7 +10,7 @@
              Foreground="{DynamicResource StaticBrush}"
              d:DesignHeight="480" d:DesignWidth="380">
 
-    <ItemsControl ItemsSource="{Binding ProjectNames}">
+    <ItemsControl ItemsSource="{Binding Solutions}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel />
@@ -39,7 +39,7 @@
 
                         <TextBlock
                             x:Name="ProjectName"
-                            Text="{Binding}"
+                            Text="{Binding Name}"
                             Grid.ColumnSpan="4"
                             TextTrimming="WordEllipsis"
                             TextWrapping="Wrap"
@@ -80,7 +80,9 @@
                             Foreground="GreenYellow"
                             Padding="0"
                             BorderThickness="0 2 0 0"
-                            BorderBrush="{DynamicResource StaticBrush}"/>
+                            BorderBrush="{DynamicResource StaticBrush}"
+                            MouseOverBackground="{StaticResource RiderHoverBrush}"
+                            PressedBackground="{StaticResource RiderClickBrush}"/>
                         <res:CorneredButton
                             Grid.Row="1"
                             Grid.Column="3"
@@ -89,7 +91,9 @@
                             Padding="0"
                             BorderThickness="2 2 0 0"
                             BorderBrush="{DynamicResource StaticBrush}"
-                            BorderRadius="0 0 9 0" />
+                            BorderRadius="0 0 9 0" 
+                            MouseOverBackground="{StaticResource RiderHoverBrush}"
+                            PressedBackground="{StaticResource RiderClickBrush}"/>
 
                     </Grid>
                 </Border>

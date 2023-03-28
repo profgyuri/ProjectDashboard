@@ -1,5 +1,7 @@
 ﻿namespace ProjectDashboard.Lib.Services;
 
+using ProjectDashboard.Lib.Models;
+
 public interface IStarterService
 {
     /// <summary>
@@ -7,8 +9,8 @@ public interface IStarterService
     /// </summary>
     /// <param name="name">Name of the project to open.</param>
     /// <param name="ide">The IDE to open the project in.</param>
-    Task OpenSolutionAsync(
-        string name,
+    void OpenSolution(
+        Solution solution,
         Ide ide);
 
     /// <summary>
@@ -16,7 +18,5 @@ public interface IStarterService
     /// </summary>
     /// <param name="name">Name of the project of the executable to open.</param>
     /// <param name="exe">The type of executable to open.</param>
-    Task RunExecutableAsync(
-        string name,
-        ExecutionMode exe);
+    void RunExecutable(Solution solution);
 }
