@@ -17,6 +17,11 @@ public interface ISolutionRepository
     /// <param name="name">The name of the solution.</param>
     /// <returns>The solution with the given name.</returns>
     Task<Solution> GetByNameAsync(string name);
+
+    /// <summary>
+    /// Gets all solutions from the repository.
+    /// </summary>
+    Task<List<Solution>> GetAllAsync();
     
     /// <summary>
     /// Saves the solution to the repository.

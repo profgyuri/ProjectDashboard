@@ -11,8 +11,8 @@ using ProjectDashboard.Lib;
 namespace ProjectDashboard.Lib.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230102025251_Initial")]
-    partial class Initial
+    [Migration("20230329001539_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,19 +26,11 @@ namespace ProjectDashboard.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DebugPath")
+                    b.Property<string>("ExePath")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PublishedPath")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ReleasePath")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

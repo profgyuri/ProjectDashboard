@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProjectDashboard.Lib.Models;
+using ProjectDashboard.Lib.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ProjectDashboard.WPF
 {
@@ -19,9 +9,31 @@ namespace ProjectDashboard.WPF
     /// </summary>
     public partial class SolutionEditWindow : Window
     {
-        public SolutionEditWindow()
+        public Solution Solution 
+        {
+            get
+            {
+                var vm = (SolutionEditWindowViewModel)DataContext;
+                return vm.Solution;
+            }
+            set
+            {
+                var vm = (SolutionEditWindowViewModel)DataContext;
+                vm.Solution = value;
+                vm.IsEditingOnly = true;
+            }
+        }
+
+        public SolutionEditWindow(SolutionEditWindowViewModel viewModel)
         {
             InitializeComponent();
+
+            DataContext = viewModel;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

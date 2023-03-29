@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:ProjectDashboard.Lib.ViewModels;assembly=ProjectDashboard.Lib"
+        xmlns:res="clr-namespace:ProjectDashboard.WPF.Resources"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Dashboard"
@@ -75,14 +76,31 @@
             <Grid
                 Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- todo: you can change the layout by setting the Control property to 1 of the UserControls-->
                 <ContentControl
+                    Grid.ColumnSpan="2"
                     x:Name="LayoutContentControl" />
+
+                <res:CorneredButton
+                    x:Name="NewProjectButton"
+                    Grid.Row="1"
+                    Click="NewProjectButton_Click"
+                    Margin="0 0 15 0"
+                    CommandParameter="{Binding}"
+                    BorderRadius="5"
+                    Content="Add New Project"
+                    Foreground="GreenYellow"
+                    Padding="0"
+                    Width="200"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource StaticBrush}"
+                    MouseOverBackground="{StaticResource RiderHoverBrush}"
+                    PressedBackground="{StaticResource RiderClickBrush}"/>
 
             </Grid>
 

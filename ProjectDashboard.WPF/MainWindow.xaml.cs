@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using Autofac;
 using ProjectDashboard.Lib.ViewModels;
+using ProjectDashboard.WPF.Dependency;
 using ProjectDashboard.WPF.Layouts;
 
 namespace ProjectDashboard.WPF;
@@ -26,5 +28,12 @@ public sealed partial class MainWindow : Window
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         Application.Current.Shutdown();
+    }
+
+    private void NewProjectButton_Click(object sender, RoutedEventArgs e)
+    {
+        var container = AutofacContainer.Container;
+        var window = container.Resolve<SolutionEditWindow>();
+        window.ShowDialog();
     }
 }

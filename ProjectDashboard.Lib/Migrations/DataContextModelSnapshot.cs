@@ -23,19 +23,11 @@ namespace ProjectDashboard.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DebugPath")
+                    b.Property<string>("ExePath")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PublishedPath")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ReleasePath")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

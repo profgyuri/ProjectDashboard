@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProjectDashboard.Lib.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,9 +18,7 @@ namespace ProjectDashboard.Lib.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     SolutionPath = table.Column<string>(type: "TEXT", nullable: false),
-                    DebugPath = table.Column<string>(type: "TEXT", nullable: false),
-                    ReleasePath = table.Column<string>(type: "TEXT", nullable: false),
-                    PublishedPath = table.Column<string>(type: "TEXT", nullable: false)
+                    ExePath = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

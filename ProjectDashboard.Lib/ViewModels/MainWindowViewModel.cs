@@ -20,12 +20,7 @@ public partial class MainWindowViewModel
         _starterService = starterService;
         _solutionRepository = solutionRepository;
 
-        _solutions = new()
-        {
-            new Solution(){SolutionPath = "", Name = "First"},
-            new Solution(){SolutionPath = "", Name = "Second"},
-            new Solution() { SolutionPath = "", Name = "Third" }
-        };
+        _solutions = new(_solutionRepository.GetAllAsync().Result);
     }
 
     [RelayCommand]

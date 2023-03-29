@@ -29,6 +29,14 @@ public sealed class SolutionRepository : ISolutionRepository
     }
 
     /// <inheritdoc />
+    public async Task<List<Solution>> GetAllAsync()
+    {
+        var result = _dataContext.Solutions.ToList();
+
+        return result is not null ? await Task.FromResult(result) : throw new Exception($"No solution found!");
+    }
+
+    /// <inheritdoc />
     public async Task<Guid> SaveAsync(Solution solution)
     {
         var result = Guid.Empty;

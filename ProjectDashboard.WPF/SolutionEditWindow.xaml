@@ -4,18 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectDashboard.WPF"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:ProjectDashboard.Lib.ViewModels;assembly=ProjectDashboard.Lib" xmlns:resources="clr-namespace:ProjectDashboard.WPF.Resources"
         d:DataContext="{d:DesignInstance vm:SolutionEditWindowViewModel}"
         WindowStyle="None"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         Background="{StaticResource BackgroundBrush}"
         Foreground="{StaticResource StaticBrush}"
         AllowsTransparency="True"
         Title="SolutionEditWindow"
-        Height="110"
-        Width="300">
+        FontSize="16"
+        Height="150"
+        Width="400">
     <Border
         CornerRadius="8"
         BorderThickness="2"
@@ -29,7 +32,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -39,7 +42,7 @@
             <TextBox
                 Grid.Column="1"
                 Text="{Binding Solution.Name}"
-                Margin="0 0 0 5"
+                Margin="0 10 0 5"
                 Padding="0"
                 materialDesign:TextFieldAssist.RippleOnFocusEnabled="True"
                 materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource InteractiveBrush}"/>
@@ -52,7 +55,7 @@
                 Grid.Row="1"
                 Text="{Binding Solution.SolutionPath}"
                 Grid.Column="1"
-                Margin="0 0 0 5"
+                Margin="0 10 0 5"
                 Padding="0"
                 materialDesign:TextFieldAssist.RippleOnFocusEnabled="True"
                 materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource InteractiveBrush}"/>
@@ -65,20 +68,33 @@
                 Grid.Row="2"
                 Text="{Binding Solution.ExePath}"
                 Grid.Column="1"
-                Margin="0 0 0 5"
+                Margin="0 10 0 5"
                 Padding="0"
                 materialDesign:TextFieldAssist.RippleOnFocusEnabled="True"
                 materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource InteractiveBrush}"/>
 
             <StackPanel
                 Grid.Row="3"
-                Grid.Column="1"
-                Orientation="Horizontal">
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
                 <resources:CorneredButton
+                    Command="{Binding SaveCommand}"
                     Style="{StaticResource InteractionButton}"
                     Margin="8 0 4 0"
-                    Content="Save"/>
+                    Content="Save">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger
+                            EventName="Click">
+                            <i:CallMethodAction
+                                MethodName="Close"
+                                TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </resources:CorneredButton>
                 <resources:CorneredButton
+                    x:Name="CancelButton"
+                    Click="CancelButton_Click"
                     Style="{StaticResource InteractionButton}"
                     Margin="4 0 8 0"
                     Content="Cancel"/>

@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using ProjectDashboard.Lib;
-using ProjectDashboard.WPF.Dependency.Modules;
 
 namespace ProjectDashboard.WPF.Dependency;
 
