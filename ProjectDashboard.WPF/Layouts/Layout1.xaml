@@ -10,7 +10,10 @@
              Foreground="{DynamicResource StaticBrush}"
              d:DesignHeight="480" d:DesignWidth="380">
 
-    <ItemsControl ItemsSource="{Binding Solutions}">
+    <ScrollViewer
+        VerticalScrollBarVisibility="Auto">
+        <ItemsControl 
+        ItemsSource="{Binding Solutions}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel />
@@ -100,4 +103,5 @@
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
+    </ScrollViewer>
 </UserControl>

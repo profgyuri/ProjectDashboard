@@ -15,7 +15,7 @@
         Background="{StaticResource BackgroundBrush}"
         Foreground="{StaticResource StaticBrush}"
         AllowsTransparency="True"
-        Height="555" Width="505">
+        Height="555" Width="535">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="42" />
@@ -83,6 +83,8 @@
 
                 <!-- todo: you can change the layout by setting the Control property to 1 of the UserControls-->
                 <ContentControl
+                    Margin="0 0 0 15"
+                    Height="430"
                     Grid.ColumnSpan="2"
                     x:Name="LayoutContentControl" />
 

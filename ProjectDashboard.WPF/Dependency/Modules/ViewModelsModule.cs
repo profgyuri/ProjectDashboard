@@ -7,7 +7,7 @@ internal sealed class ViewModelsModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<MainWindowViewModel>().SingleInstance();
-        builder.RegisterType<SolutionEditWindowViewModel>().InstancePerDependency();
+        builder.RegisterType<MainWindowViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SolutionEditWindowViewModel>().AsSelf().AsImplementedInterfaces().InstancePerDependency();
     }
 }
